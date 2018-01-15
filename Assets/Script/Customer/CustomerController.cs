@@ -6,23 +6,12 @@ using UnityEngine.UI;
 public class CustomerController : MonoBehaviour
 {
     private Inventory inventory;
-	public Text cstext;
-    Image bubble;
-    Color color;
-    string[] recipe = { "testrecipe1" };//, "Twotestrecipe2", "testrecipe3" };
     public CustomerSpawn CS;
 
     void Start()
     {
-        // text = GameObject.Find("Dish").GetComponent<Text>();
-        // Pick a dish randomly
-        //chosenDish = recipe[Random.Range(0, recipe.Length)];
-        //text.text = chosenDish;
 
-        //bubble = GameObject.Find("DishBubble").GetComponent<Image>();
-		//text.enabled = !text.enabled;
     }
-		
 
     public void CheckFood()
     {
