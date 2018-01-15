@@ -13,7 +13,7 @@ public class CustomerSpawn : MonoBehaviour {
 	public Text text;
 
     public int totalCustomer;
-    int customerServed = 0;
+    public int customerServed = 0;
 
     int spawnWait;
     public int minSpawnWait;
