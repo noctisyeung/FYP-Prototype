@@ -23,7 +23,6 @@ public class CustomerSpawn : MonoBehaviour {
     
 	void Start ()
     {
-        totalCustomer = 2;
         StartCoroutine(spawnCustomer());
 	}
 
