@@ -5,24 +5,22 @@ using UnityEngine.UI;
 
 public class CustomerController : MonoBehaviour
 {
-
-    public Text text;
-    public string chosenDish;
     private Inventory inventory;
+	public Text cstext;
     Image bubble;
     Color color;
     string[] recipe = { "testrecipe1" };//, "Twotestrecipe2", "testrecipe3" };
-    private CustomerSpawn CS;
+    public CustomerSpawn CS;
 
     void Start()
     {
-        text = GameObject.Find("Dish").GetComponent<Text>();
+        // text = GameObject.Find("Dish").GetComponent<Text>();
         // Pick a dish randomly
-        chosenDish = recipe[Random.Range(0, recipe.Length)];
-        text.text = chosenDish;
+        //chosenDish = recipe[Random.Range(0, recipe.Length)];
+        //text.text = chosenDish;
 
         //bubble = GameObject.Find("DishBubble").GetComponent<Image>();
-		text.enabled = !text.enabled;
+		//text.enabled = !text.enabled;
     }
 		
 
@@ -31,7 +29,8 @@ public class CustomerController : MonoBehaviour
         inventory = FindObjectOfType<Inventory>();
         inventory.GetItemInList();
         Item[] PlayerSelectedFood = inventory.GetItemInList();
-        Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/"+chosenDish);
+		CS = FindObjectOfType<CustomerSpawn> ();
+		Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/"+CS.chosenDish);
         int counter = CorrectRecipeFoods.foods.Length;
         int PlayerSelectedLength = PlayerSelectedFood.Length;
         for (var i = 0; i < CorrectRecipeFoods.foods.Length; i++)

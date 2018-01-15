@@ -7,7 +7,7 @@ public class RecipeManager : MonoBehaviour {
 	// Use this for initialization
 	public TimerManager currentTime;
     public int numOfDish; //controling the level dish
-    string[] chosenDish;
+    public string[] chosenDish;
     public string[] recipe;// = { "testrecipe1", "testrecipe2", "testrecipe3" };
     private int PageCounter = 0; //select food use
 	public Text titleText;
@@ -16,6 +16,7 @@ public class RecipeManager : MonoBehaviour {
     private string testList = "list: ";
     public Canvas BlockerLeft;
     public Canvas BlockerRight;
+	public bool isStart = false;
 
     public Image[] itemImages = new Image[numItemSlots];
 
@@ -76,6 +77,7 @@ public class RecipeManager : MonoBehaviour {
 		ReciptUI.enabled = false;
         BlockerLeft.enabled = false;
         BlockerRight.enabled = false;
+		isStart = true;
 	}
     public void NextRecipe ()
     {

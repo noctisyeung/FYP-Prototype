@@ -7,26 +7,28 @@ public class CustomerSpawn : MonoBehaviour {
 
     public GameObject[] customers;
     public GameObject currentCustomer;
+	public RecipeManager rm;
+	string[] dish;
+	public string chosenDish;
+	public Text text;
 
     public int totalCustomer;
     int customerServed = 0;
 
     int spawnWait;
-    int minSpawnWait = 3;
-    int maxSpawnWait = 5;
+    public int minSpawnWait;
+    public int maxSpawnWait;
 
-    // Testing variable
     public bool killMode;
     
 	void Start ()
     {
-        totalCustomer = 3;
+        totalCustomer = 2;
         StartCoroutine(spawnCustomer());
 	}
 
     void Update()
     {
-        // Testing remove customer
         if (killMode)
         {
             killMode = false;
@@ -49,13 +51,27 @@ public class CustomerSpawn : MonoBehaviour {
 
     IEnumerator spawnCustomer()
     {
+		yield return new WaitUntil(() => rm.isStart);
+		List<string> recipe = new List<string> (rm.chosenDish);
+		dish = new string[totalCustomer];
+
+
         for (int i = 0; i < totalCustomer; i++)
         {
             yield return new WaitUntil(() => !currentCustomer);
             spawnWait = Random.Range(minSpawnWait, maxSpawnWait);
             yield return new WaitForSeconds(spawnWait);
 
-            currentCustomer = Instantiate(customers[Random.Range(0, 2)], new Vector3(-6.2f, 8, 25), gameObject.transform.rotation);
+			dish[i] = recipe[Random.Range (0, recipe.Count)];
+			text.text = dish[i];
+			text.enabled = true;
+			chosenDish = dish[i];
+
+			if (totalCustomer <= recipe.Count) {
+				recipe.Remove(dish[i]);
+			}
+			Debug.Log ("choose food: "+ chosenDish);
+			currentCustomer = Instantiate(customers[Random.Range (0, 2)], this.transform.position, this.transform.rotation);
             currentCustomer.transform.parent = gameObject.transform;
         }
     }
@@ -63,8 +79,8 @@ public class CustomerSpawn : MonoBehaviour {
  public void destroyCustomer()
     {
         Destroy(currentCustomer);
-		Text text = GameObject.Find("Dish").GetComponent<Text>();
-		text.enabled = !text.enabled;
+		text.enabled = false;
+		text.text = "";
         currentCustomer = null;
         customerServed++;
     }
