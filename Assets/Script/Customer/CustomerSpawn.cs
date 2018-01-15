@@ -42,10 +42,7 @@ public class CustomerSpawn : MonoBehaviour {
         // End game
         if (customerServed == totalCustomer)
         {
-            /*Text gameOver = GameObject.Find("GameOver").GetComponent<Text>();
-            Color color = gameOver.color;
-            color.a = 1;
-            gameOver.color = color;*/
+
         }
     }
 
@@ -67,10 +64,10 @@ public class CustomerSpawn : MonoBehaviour {
 			text.enabled = true;
 			chosenDish = dish[i];
 
-			if (totalCustomer <= recipe.Count) {
+			if (totalCustomer - customerServed <= recipe.Count) {
 				recipe.Remove(dish[i]);
 			}
-			Debug.Log ("choose food: "+ chosenDish);
+
 			currentCustomer = Instantiate(customers[Random.Range (0, 2)], this.transform.position, this.transform.rotation);
             currentCustomer.transform.parent = gameObject.transform;
         }

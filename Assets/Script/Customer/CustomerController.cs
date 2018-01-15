@@ -8,11 +8,6 @@ public class CustomerController : MonoBehaviour
     private Inventory inventory;
     public CustomerSpawn CS;
 
-    void Start()
-    {
-
-    }
-
     public void CheckFood()
     {
         inventory = FindObjectOfType<Inventory>();
