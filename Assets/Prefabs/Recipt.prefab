@@ -1005,13 +1005,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTime: {fileID: 114359939834143746}
   numOfDish: 2
+  chosenDish: []
   recipe:
   - testrecipe1
   - testrecipe2
   - testrecipe3
   titleText: {fileID: 114805826312861424}
-  BlockerLeft: {fileID: 0}
-  BlockerRight: {fileID: 0}
+  BlockerLeft: {fileID: 223408382487361588, guid: ef5cf61e1d1c89842a03e41a1e109019,
+    type: 2}
+  BlockerRight: {fileID: 223567634630048332, guid: 8b07d0062e8e62f4fbeb41ddd5e63e43,
+    type: 2}
+  isStart: 0
   itemImages:
   - {fileID: 114681524255393626}
   - {fileID: 114641259358176352}

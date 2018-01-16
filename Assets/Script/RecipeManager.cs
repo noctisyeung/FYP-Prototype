@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class RecipeManager : MonoBehaviour {
 	// Use this for initialization
 	public TimerManager currentTime;
+    public ScoreManager scoreManager;
     public int numOfDish; //controling the level dish
     public string[] chosenDish;
     public string[] recipe;// = { "testrecipe1", "testrecipe2", "testrecipe3" };
+    public int TimeScore;
+    private float tempStartTime;
     private int PageCounter = 0; //select food use
 	public Text titleText;
     private bool changePage = false;
@@ -24,6 +27,7 @@ public class RecipeManager : MonoBehaviour {
 
     void Start () {
 		int count = 1;
+        tempStartTime = currentTime.startTime;
         Debug.Log(recipe.Length);
         chosenDish = new string[numOfDish];
         List<string> temprecipe = new List<string>(recipe);
@@ -71,13 +75,15 @@ public class RecipeManager : MonoBehaviour {
 	}
 	public void StartTheGame ()
 	{
-		Canvas ReciptUI = GetComponent<Canvas>();
-		Debug.Log ("The remaining time is " + currentTime.TimeScore);
-		currentTime.IsTimeEnd = true;
-		ReciptUI.enabled = false;
-        BlockerLeft.enabled = false;
-        BlockerRight.enabled = false;
-		isStart = true;
+
+            Canvas ReciptUI = GetComponent<Canvas>();
+            currentTime.IsTimeEnd = true;
+            ReciptUI.enabled = false;
+            BlockerLeft.enabled = false;
+            BlockerRight.enabled = false;
+            isStart = true;
+            TimeScore = TimeScore - (Mathf.FloorToInt(tempStartTime) - Mathf.FloorToInt(currentTime.startTime));
+            scoreManager.levelTotalScore += TimeScore;
 	}
     public void NextRecipe ()
     {

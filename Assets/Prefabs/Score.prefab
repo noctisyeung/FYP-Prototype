@@ -9,57 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1644395676502826}
+  m_RootGameObject: {fileID: 1097000083827092}
   m_IsPrefabParent: 1
---- !u!1 &1644395676502826
+--- !u!1 &1097000083827092
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4622193068468680}
-  - component: {fileID: 114347388877362552}
+  - component: {fileID: 4335693087235086}
+  - component: {fileID: 114050400614534564}
   m_Layer: 0
-  m_Name: CustomerSpawn
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4622193068468680
+--- !u!4 &4335693087235086
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1644395676502826}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.21, y: 10, z: 46.62}
+  m_GameObject: {fileID: 1097000083827092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.581123, y: 13.564521, z: 46.67399}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114347388877362552
+--- !u!114 &114050400614534564
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1644395676502826}
+  m_GameObject: {fileID: 1097000083827092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde2fb9701d9fb84d9953423eb2a7a90, type: 3}
+  m_Script: {fileID: 11500000, guid: 47509e97525ac0b4faf76c3a13c7503c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customers:
-  - {fileID: 1174479992352422, guid: 6848dc7b9ae37c1448c9239d6934f9fc, type: 2}
-  - {fileID: 1670176612418278, guid: e32fc540a999ef942ad6a970f031fe0e, type: 2}
-  currentCustomer: {fileID: 0}
-  rm: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539, type: 2}
-  chosenDish: 
-  text: {fileID: 114007807150226310, guid: 47870cd170534f643ae207133813cfc5, type: 2}
-  totalCustomer: 2
-  customerServed: 0
-  minSpawnWait: 3
-  maxSpawnWait: 5
-  killMode: 0
+  levelTotalScore: 0

@@ -95,8 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55898f73fe95641429f691546575d161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cstext: {fileID: 114007807150226310, guid: 47870cd170534f643ae207133813cfc5, type: 2}
   CS: {fileID: 114347388877362552, guid: b9c9ed6f14dfa6d49abee3cc51387755, type: 2}
+  scoreManager: {fileID: 114050400614534564, guid: 1be730b6cc6c1f24d9f2562f4a9368d2,
+    type: 2}
+  dishScore: 100
+  wrongScore: 20
 --- !u!136 &136718127311123222
 CapsuleCollider:
   m_ObjectHideFlags: 1

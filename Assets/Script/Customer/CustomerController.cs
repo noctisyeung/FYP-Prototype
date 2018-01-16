@@ -7,13 +7,16 @@ public class CustomerController : MonoBehaviour
 {
     private Inventory inventory;
     public CustomerSpawn CS;
-
+    public ScoreManager scoreManager;
+    public int dishScore;
+    public int wrongScore;
     public void CheckFood()
     {
         inventory = FindObjectOfType<Inventory>();
         inventory.GetItemInList();
         Item[] PlayerSelectedFood = inventory.GetItemInList();
 		CS = FindObjectOfType<CustomerSpawn> ();
+        scoreManager = FindObjectOfType<ScoreManager>();
 		Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/"+CS.chosenDish);
         int counter = CorrectRecipeFoods.foods.Length;
         int PlayerSelectedLength = PlayerSelectedFood.Length;
@@ -34,7 +37,8 @@ public class CustomerController : MonoBehaviour
 
            if (correct == false)
             {
-                Debug.Log("Selected Food incorrect");
+                Debug.Log("Selected Food incorrect"+ scoreManager.levelTotalScore);
+                dishScore -= wrongScore;
                 return;
             }
             if (counter == 0)
@@ -44,11 +48,13 @@ public class CustomerController : MonoBehaviour
             {
                 if (PlayerSelectedFood[k] != null)
                 {
-                        Debug.Log("Selected Food incorrect");
+                        Debug.Log("Selected Food incorrect" + scoreManager.levelTotalScore);
+                        dishScore -= wrongScore;
                         return;
                     }
             }
                 Debug.Log("Selected Food correct!!!!!");
+                scoreManager.levelTotalScore += dishScore;
                 CS = FindObjectOfType<CustomerSpawn>();
                 CS.destroyCustomer();
             }

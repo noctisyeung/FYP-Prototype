@@ -1,0 +1,69 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HintManager : MonoBehaviour {
+
+    public CustomerSpawn customerSpawn;
+    public RecipeManager recipeManager;
+    public GameObject hintBtn;
+    public GameObject hintFoods;
+    public ScoreManager scoreManager;
+
+    public Text hintTitleText;
+    public float showingTime;
+    public int usedHintScore;
+    private float tempShowingTime;
+    private bool showHint = false;
+    string currentHintFood;
+    
+    public const int numItemSlots = 4;
+    public Image[] itemImages = new Image[numItemSlots];
+    public Text[] itemName = new Text[numItemSlots];
+
+    // Use this for initialization
+    void Start()
+    {
+        tempShowingTime = showingTime;
+    }
+    // Update is called once per frame
+    void Update () {
+        if (recipeManager.isStart&&customerSpawn.currentCustomer != null&&showHint)
+        {
+            int count = 1;
+            currentHintFood = customerSpawn.chosenDish;
+            Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/" + currentHintFood);
+            hintTitleText.text = "Hint of " + CorrectRecipeFoods.name;
+            for (int i = 0; i < CorrectRecipeFoods.foods.Length; i++)
+            {
+                itemName[i].enabled = true;
+                itemImages[i].enabled = true;
+                itemImages[i].sprite = CorrectRecipeFoods.foods[i].sprite;
+                itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].name + "\n");
+                count++;
+            }
+            showingTime -= Time.deltaTime;
+            if (showingTime < 0)
+            {
+                hintBtn.SetActive(true);
+                hintFoods.SetActive(false);
+                hintTitleText.enabled = false;
+                showHint = false;
+            }
+        }
+    }
+
+    public void showHintHandler()
+    {
+        if (recipeManager.isStart)
+        {
+            showHint = true;
+            scoreManager.levelTotalScore -= usedHintScore;
+            hintBtn.SetActive(false);
+            hintFoods.SetActive(true);
+            hintTitleText.enabled = true;
+            showingTime = tempShowingTime;
+        }
+    }
+}

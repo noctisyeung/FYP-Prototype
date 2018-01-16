@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour {
     public float startTime;
-	public int TimeScore;
+    private int usedTime;
     Text timeText;
     public bool IsTimeEnd;
     // Use this for initialization
@@ -22,7 +22,6 @@ public class TimerManager : MonoBehaviour {
             startTime -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(startTime / 60F);
 			int seconds = Mathf.FloorToInt(startTime - minutes * 60);
-			TimeScore = Mathf.FloorToInt(startTime + minutes * 60);
 			timeText.text = "Time: " + minutes + " : " + seconds;
 			if (seconds == 0&&minutes == 0 )
             {
