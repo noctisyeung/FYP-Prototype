@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecipeName: testrecipe2
   foods:
-  - {fileID: 11400000, guid: fc8bd55046bf1864d95dba20838cdf4f, type: 2}
-  - {fileID: 11400000, guid: fc8bd55046bf1864d95dba20838cdf4f, type: 2}
+  - {fileID: 11400000, guid: 52e73fa5c9c05104781f67cc14c3302f, type: 2}
+  - {fileID: 11400000, guid: 89caf4aab98fb2a449e4eb854692ffa2, type: 2}

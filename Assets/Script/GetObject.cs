@@ -33,51 +33,26 @@ public class GetObject : MonoBehaviour{
             GetTemp.enabled = false;
             string temp = FoodManager.PassObjcetName();
             Debug.Log("The selection is :"+ temp);
-            if (temp == "remove")
+            if (temp == "Prop_RubbishBin_02")
             {
                 inventory.RemoveItem();
+                temp = null;
             }
             else if (temp == "submit")
             {
                 CC = FindObjectOfType<CustomerController>();
                 CC.CheckFood();
                 inventory.RemoveAllItem();
+                temp = null;
             }
             else
             {
-                if (temp == "TestFood")
-                {
-                    item = Resources.Load<Item>("fish");
-                    Debug.Log(item);
+                    item = Resources.Load<Item>(temp);
                     inventory.AddItem(item);
-                }
-                if (temp == "TestFood2")
-                {
-                    item = Resources.Load<Item>("coin");
-                    Debug.Log(item);
-                    inventory.AddItem(item);
-                }
+                    temp = null;
             }
         }
 	}
-    public static void PutFood(string SelectedFood) 
-    {
-        Debug.Log("The selection putting in to the list :" + SelectedFood);
-        SelectedFoodList.Add(SelectedFood);
-    }
 
-    public static void RemoveFood()
-    {
-        SelectedFoodList.RemoveAt(SelectedFoodList.Count - 1);
-    }
-
-    public static void ShowFood()
-    {
-        foreach(var item in SelectedFoodList)
-        {
-            Debug.Log("Item in the list:" + item);
-        }
-        SelectedFoodList.Clear();
-    }
 
 }

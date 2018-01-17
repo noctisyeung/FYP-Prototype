@@ -10,7 +10,8 @@ public class ChangeColor : MonoBehaviour {
     void Start () {
 
         ColorTemp = GetComponent<ChangeColor>();
-        OrigCol = gameObject.GetComponent<Renderer>().material.color;
+        OrigCol = gameObject.GetComponentInChildren<Renderer>().material.color;
+        //OrigCol = gameObject.GetComponent<Renderer>().material.color;
     }
 
     private void OnDisable()
@@ -29,12 +30,15 @@ public class ChangeColor : MonoBehaviour {
         }
         else
         {
-            gameObject.GetComponent<Renderer>().material.color = OrigCol;
+            gameObject.GetComponentInChildren<Renderer>().material.color = OrigCol;
+            //gameObject.GetComponent<Renderer>().material.color = OrigCol;
             ColorTemp.enabled = false;
         }
     }
     public void ChangeFoodcolor(float t)
-    {  
-            gameObject.GetComponent<Renderer>().material.color = new Color(OrigCol.r-t, OrigCol.g-t, OrigCol.b-t, OrigCol.a);
+    {
+        gameObject.GetComponentInChildren<Renderer>().material.color = new Color(OrigCol.r - t, OrigCol.g - t, OrigCol.b - t, OrigCol.a);
+
+        //gameObject.GetComponent<Renderer>().material.color = new Color(OrigCol.r-t, OrigCol.g-t, OrigCol.b-t, OrigCol.a);
     }
 }

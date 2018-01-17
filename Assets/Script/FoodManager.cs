@@ -18,7 +18,9 @@ public class FoodManager : MonoBehaviour {
     }
     public void GetTheFood()
     {
-        OrigCol = gameObject.GetComponent<Renderer>().material.color;
+        ObjectName = null;
+        OrigCol = gameObject.GetComponentInChildren<Renderer>().material.color;
+        //OrigCol = gameObject.GetComponent<Renderer>().material.color;
         ObjectName = this.gameObject.name;
     }
 
@@ -30,7 +32,8 @@ public class FoodManager : MonoBehaviour {
 
     public void LeaveTheFood()
     {
-        gameObject.GetComponent<Renderer>().material.color = OrigCol;
+        gameObject.GetComponentInChildren<Renderer>().material.color = OrigCol;
+        //gameObject.GetComponent<Renderer>().material.color = OrigCol;
         ObjectName = null;
     }
 }
