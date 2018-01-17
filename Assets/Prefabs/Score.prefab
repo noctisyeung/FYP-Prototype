@@ -51,4 +51,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47509e97525ac0b4faf76c3a13c7503c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerSpawn: {fileID: 0}
+  recipeManager: {fileID: 0}
+  scoreCanvas: {fileID: 0}
+  leftBlocker: {fileID: 0}
+  rightBlocker: {fileID: 0}
+  scoreText: {fileID: 0}
   levelTotalScore: 0
+  scoreSplitPoint: 50
+  levelPerfectScore: 700
+  StarImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -14,6 +14,7 @@ public class HintManager : MonoBehaviour {
     public Text hintTitleText;
     public float showingTime;
     public int usedHintScore;
+    private bool isButtonStart;
     private float tempShowingTime;
     private bool showHint = false;
     string currentHintFood;
@@ -25,10 +26,22 @@ public class HintManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        isButtonStart = false;
+        hintBtn.SetActive(false);
         tempShowingTime = showingTime;
     }
     // Update is called once per frame
     void Update () {
+        if (recipeManager.isStart && !isButtonStart)
+        {
+            hintBtn.SetActive(true);
+            isButtonStart = true;
+        }
+        else if (!recipeManager.isStart && isButtonStart)
+        {
+            hintBtn.SetActive(false);
+            isButtonStart = false;
+        }
         if (recipeManager.isStart&&customerSpawn.currentCustomer != null&&showHint)
         {
             int count = 1;

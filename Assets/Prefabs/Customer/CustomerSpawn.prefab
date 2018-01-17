@@ -55,9 +55,9 @@ MonoBehaviour:
   - {fileID: 1174479992352422, guid: 6848dc7b9ae37c1448c9239d6934f9fc, type: 2}
   - {fileID: 1670176612418278, guid: e32fc540a999ef942ad6a970f031fe0e, type: 2}
   currentCustomer: {fileID: 0}
-  rm: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539, type: 2}
+  rm: {fileID: 0}
   chosenDish: 
-  text: {fileID: 114007807150226310, guid: 47870cd170534f643ae207133813cfc5, type: 2}
+  text: {fileID: 0}
   totalCustomer: 2
   customerServed: 0
   minSpawnWait: 3
