@@ -33,13 +33,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1644395676502826}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.21, y: 10, z: 46.62}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -22.5, y: 9.25, z: 45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &114347388877362552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,14 +52,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customers:
-  - {fileID: 1174479992352422, guid: 6848dc7b9ae37c1448c9239d6934f9fc, type: 2}
-  - {fileID: 1670176612418278, guid: e32fc540a999ef942ad6a970f031fe0e, type: 2}
-  currentCustomer: {fileID: 0}
-  rm: {fileID: 0}
+  - {fileID: 1131895752649246, guid: 64b5b1b0a83a8cc468035031a9bee0dc, type: 2}
+  - {fileID: 1874033563428248, guid: ecf8542f1cbe432479ea1cc620ae3edf, type: 2}
+  - {fileID: 1297494847775970, guid: f443dff28786c3643a0fb5d8e3200e1f, type: 2}
+  - {fileID: 1402422919195884, guid: c8a9beb3d9e4bf0469d3862781527fdf, type: 2}
+  - {fileID: 1531648372660886, guid: 4291ae1278bb5c04abfba03843da5bce, type: 2}
+  - {fileID: 1445471608092208, guid: d70a46f8e28473b4088fdeb1545bdc48, type: 2}
+  bubble: {fileID: 0}
+  recipeManager: {fileID: 0}
   chosenDish: 
-  text: {fileID: 0}
-  totalCustomer: 2
-  customerServed: 0
+  totalCustomer: 6
   minSpawnWait: 3
   maxSpawnWait: 5
   killMode: 0

@@ -11,11 +11,13 @@ public class GetObject : MonoBehaviour{
     private Inventory inventory;
     private Item item;
     private CustomerController CC;
+	private AudioManager audioManager;
 
     // Use this for initialization
     void Start () {
         GetTemp = GetComponent<GetObject>();
         inventory = FindObjectOfType<Inventory>();
+		audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void OnDisable()
@@ -35,6 +37,7 @@ public class GetObject : MonoBehaviour{
             Debug.Log("The selection is :"+ temp);
 			if (temp == "Prop_RubbishBin_02")
             {
+				audioManager.Play("Remove");
                 inventory.RemoveItem();
             }
             else if (temp == "submit")
@@ -45,9 +48,10 @@ public class GetObject : MonoBehaviour{
             }
             else
             {
+				audioManager.Play("Select");
 				item = Resources.Load<Item>(temp);
-                    Debug.Log(item);
-                    inventory.AddItem(item);
+                Debug.Log(item);
+                inventory.AddItem(item);
             }
         }
 	}

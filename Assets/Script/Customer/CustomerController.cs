@@ -5,11 +5,23 @@ using UnityEngine.UI;
 
 public class CustomerController : MonoBehaviour
 {
+	public Sprite tick;
+	public Sprite cross;
+	private Image answerImage;
     private Inventory inventory;
     public CustomerSpawn CS;
     public ScoreManager scoreManager;
     public int dishScore;
     public int wrongScore;
+	private AudioManager audioManager;
+	private int destroyWait = 5;
+
+	private void Start()
+	{
+		audioManager = FindObjectOfType<AudioManager>();
+		answerImage = GameObject.Find("AnswerImage").GetComponent<Image>();
+	}
+
     public void CheckFood()
     {
         inventory = FindObjectOfType<Inventory>();
@@ -39,6 +51,7 @@ public class CustomerController : MonoBehaviour
             {
                 Debug.Log("Selected Food incorrect"+ scoreManager.levelTotalScore);
                 dishScore -= wrongScore;
+				setWrong();
                 return;
             }
             if (counter == 0)
@@ -50,14 +63,37 @@ public class CustomerController : MonoBehaviour
                 {
                         Debug.Log("Selected Food incorrect" + scoreManager.levelTotalScore);
                         dishScore -= wrongScore;
+						setWrong();
                         return;
-                    }
+                }
             }
                 Debug.Log("Selected Food correct!!!!!");
                 scoreManager.levelTotalScore += dishScore;
+				setCorrect();
                 CS = FindObjectOfType<CustomerSpawn>();
-                CS.destroyCustomer();
+				CS.Invoke("destroyCustomer", destroyWait);
             }
         }
     }
+
+	private void setCorrect()
+	{
+		answerImage.sprite = tick;
+		answerImage.enabled = true;
+		audioManager.Play("Correct");
+		Invoke("destroySet", destroyWait);
+	}
+
+	private void setWrong()
+	{
+		answerImage.sprite = cross;
+		answerImage.enabled = true;
+		audioManager.Play("Wrong");
+		Invoke("destroySet", destroyWait);
+	}
+
+	private void destroySet()
+	{
+		answerImage.enabled = false;
+	}
 }
