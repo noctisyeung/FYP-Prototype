@@ -17,8 +17,8 @@ public class RecipeManager : MonoBehaviour {
     private bool changePage = false;
     public const int numItemSlots = 4;
     private string testList = "list: ";
-    public Canvas BlockerLeft;
-    public Canvas BlockerRight;
+	public GameObject BlockerLeft;
+	public GameObject BlockerRight;
 	public bool isStart = false;
 
     public Image[] itemImages = new Image[numItemSlots];
@@ -79,8 +79,8 @@ public class RecipeManager : MonoBehaviour {
             Canvas ReciptUI = GetComponent<Canvas>();
             currentTime.IsTimeEnd = true;
             ReciptUI.enabled = false;
-            BlockerLeft.enabled = false;
-            BlockerRight.enabled = false;
+			BlockerLeft.SetActive(false);
+			BlockerRight.SetActive(false);
             isStart = true;
             TimeScore = TimeScore - (Mathf.FloorToInt(tempStartTime) - Mathf.FloorToInt(currentTime.startTime));
             scoreManager.levelTotalScore += TimeScore;

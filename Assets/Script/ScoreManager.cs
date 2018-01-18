@@ -8,8 +8,8 @@ public class ScoreManager : MonoBehaviour {
     public CustomerSpawn customerSpawn;
     public RecipeManager recipeManager;
     public GameObject scoreCanvas;
-    public Canvas leftBlocker;
-    public Canvas rightBlocker;
+	public GameObject leftBlocker;
+	public GameObject rightBlocker;
     public Text scoreText;
 
     public int levelTotalScore = 0; //The total socre user got
@@ -25,8 +25,8 @@ public class ScoreManager : MonoBehaviour {
 		if ((customerSpawn.customerServed == customerSpawn.totalCustomer)&&!scoreCanvas.activeSelf)
         {
             scoreCanvas.SetActive(true);
-            leftBlocker.enabled = true;
-            rightBlocker.enabled = true;
+			leftBlocker.SetActive(true);
+			rightBlocker.SetActive(true);
             showStar(showStarCalculator(levelTotalScore));
             scoreText.text = levelTotalScore.ToString();
             recipeManager.isStart = false;

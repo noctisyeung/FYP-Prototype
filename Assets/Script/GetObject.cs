@@ -28,12 +28,12 @@ public class GetObject : MonoBehaviour{
 
         SelectedTime += Time.deltaTime;
 
-        if (SelectedTime >= 3f)
+        if (SelectedTime >= 2f)
         {
             GetTemp.enabled = false;
             string temp = FoodManager.PassObjcetName();
             Debug.Log("The selection is :"+ temp);
-            if (temp == "remove")
+			if (temp == "Prop_RubbishBin_02")
             {
                 inventory.RemoveItem();
             }
@@ -45,39 +45,12 @@ public class GetObject : MonoBehaviour{
             }
             else
             {
-                if (temp == "TestFood")
-                {
-                    item = Resources.Load<Item>("fish");
+				item = Resources.Load<Item>(temp);
                     Debug.Log(item);
                     inventory.AddItem(item);
-                }
-                if (temp == "TestFood2")
-                {
-                    item = Resources.Load<Item>("coin");
-                    Debug.Log(item);
-                    inventory.AddItem(item);
-                }
             }
         }
 	}
-    public static void PutFood(string SelectedFood) 
-    {
-        Debug.Log("The selection putting in to the list :" + SelectedFood);
-        SelectedFoodList.Add(SelectedFood);
-    }
 
-    public static void RemoveFood()
-    {
-        SelectedFoodList.RemoveAt(SelectedFoodList.Count - 1);
-    }
-
-    public static void ShowFood()
-    {
-        foreach(var item in SelectedFoodList)
-        {
-            Debug.Log("Item in the list:" + item);
-        }
-        SelectedFoodList.Clear();
-    }
 
 }
