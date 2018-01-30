@@ -9,6 +9,8 @@ public class GetObject : MonoBehaviour{
     public GameObject SubmitButton;
     public float SelectedTime =0f;
     public static ArrayList SelectedFoodList = new ArrayList();
+    public CustomerSpawn customerSpawn;
+
     private GetObject GetTemp;
     private Inventory inventory;
     private Item item;
@@ -90,6 +92,7 @@ public class GetObject : MonoBehaviour{
         {
             if (Fire.activeInHierarchy == true)
             {
+                customerSpawn.unhideCustomer();
                 Fire.SetActive(false);
                 SubmitButton.SetActive(true);
             }

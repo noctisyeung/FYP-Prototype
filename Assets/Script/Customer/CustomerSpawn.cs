@@ -24,7 +24,7 @@ public class CustomerSpawn : MonoBehaviour
 
 	void Start()
 	{
-		audioManager = FindObjectOfType<AudioManager>();
+		//audioManager = FindObjectOfType<AudioManager>();
 		dishText = bubble.GetComponentInChildren<Text>();
 		StartCoroutine(spawnCustomer());
 	}
@@ -78,4 +78,22 @@ public class CustomerSpawn : MonoBehaviour
 		currentCustomer = null;
 		customerServed++;
 	}
+
+    public void hideCustomer()
+    {
+        if (currentCustomer)
+        {
+            currentCustomer.SetActive(false);
+            bubble.SetActive(false);
+        }
+    }
+
+    public void unhideCustomer()
+    {
+        if (currentCustomer)
+        {
+            currentCustomer.SetActive(true);
+            bubble.SetActive(true);
+        }
+    }
 }
