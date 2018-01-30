@@ -10,6 +10,8 @@ public class Fire : MonoBehaviour {
     public CustomerSpawn customerSpawn;
     public GameObject fire;
 
+    private AudioManager audioManager;
+
     void Start () {
         StartCoroutine(setFire());
     }

@@ -7,11 +7,8 @@ public class GetObject : MonoBehaviour{
 
     public GameObject Fire;
     public GameObject SubmitButton;
-    public float SelectedTime =0f;
     public static ArrayList SelectedFoodList = new ArrayList();
     public CustomerSpawn customerSpawn;
-
-    private GetObject GetTemp;
     private Inventory inventory;
     private Item item;
     private CustomerController CC;
@@ -19,23 +16,18 @@ public class GetObject : MonoBehaviour{
 
     // Use this for initialization
     void Start () {
-        GetTemp = GetComponent<GetObject>();
         inventory = FindObjectOfType<Inventory>();
 		audioManager = FindObjectOfType<AudioManager>();
     }
 
-    private void OnDisable()
-    {
-        SelectedTime = 0f;
-    }
-
+     
     // Update is called once per frame
     public void Update() {
 
-        // SelectedTime += Time.deltaTime;
 
         if (Fire.activeInHierarchy)                    //disable submit button
         {
+            audioManager.StopPlayBG();
             SubmitButton.SetActive(false);
         }
 
@@ -74,7 +66,6 @@ public class GetObject : MonoBehaviour{
     }
     public void SelectItem()
     {
-        GetTemp.enabled = false;
         string temp = FoodManager.PassObjcetName();
         Debug.Log("The selection is :" + temp);
         if (temp == "Prop_RubbishBin_02")
@@ -92,9 +83,11 @@ public class GetObject : MonoBehaviour{
         {
             if (Fire.activeInHierarchy == true)
             {
+                audioManager.Play("FireExtinguisher");
                 customerSpawn.unhideCustomer();
                 Fire.SetActive(false);
                 SubmitButton.SetActive(true);
+                audioManager.StartPlayBG();
             }
         }
         else

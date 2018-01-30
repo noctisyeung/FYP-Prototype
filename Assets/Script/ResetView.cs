@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class ResetView : MonoBehaviour
 {
+         private GvrViewer gr;
+     void Start () {
+         gr = new GvrViewer ();
+     }
+ 
+     void Update () {
+         if (Input.GetMouseButtonDown(0)) {
+            Debug.Log("Pressed");
+            gr.Recenter ();
+         }
+ 
+     }
+     }
 
-    public Transform target;
+
+   /* public Transform target;
     Quaternion prevRotation;
 
     void Start()
@@ -32,4 +46,4 @@ public class ResetView : MonoBehaviour
 
         }
     }
-}
+}*/
