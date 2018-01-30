@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: rice
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 60d1bc1672bae074b94a9e72ec4f2db3, type: 3}
+  ChineseName: "\u7C73"

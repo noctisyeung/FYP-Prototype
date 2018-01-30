@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: chicken
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 379a6ed3a5cf4f14b8c186e77e61964a, type: 3}
+  ChineseName: "\u96DE\u8089"

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: carrots
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5fbcb4b55dc3a4e919abbe5bc5182e30, type: 3}
+  ChineseName: "\u80E1\u863F\u8514"

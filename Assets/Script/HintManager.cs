@@ -47,13 +47,15 @@ public class HintManager : MonoBehaviour {
             int count = 1;
             currentHintFood = customerSpawn.chosenDish;
             Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/" + currentHintFood);
-            hintTitleText.text = "Hint of " + CorrectRecipeFoods.name;
+            //hintTitleText.text = "Hint of " + CorrectRecipeFoods.ChineseName;                     //Eng
+            hintTitleText.text = "菜單 " + CorrectRecipeFoods.ChineseName + "的提示";               //Chi
             for (int i = 0; i < CorrectRecipeFoods.foods.Length; i++)
             {
                 itemName[i].enabled = true;
                 itemImages[i].enabled = true;
                 itemImages[i].sprite = CorrectRecipeFoods.foods[i].sprite;
-                itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].name + "\n");
+                itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].ChineseName + "\n");        //Chi
+               // itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].name + "\n");       //Eng
                 count++;
             }
             showingTime -= Time.deltaTime;

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: salt
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bdc4c051b045a1b4a8f9d10417738e13, type: 3}
+  ChineseName: "\u9E7D"

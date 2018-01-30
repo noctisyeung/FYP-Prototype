@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: egg
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3c07aae65544048b2af75cdc01faa1df, type: 3}
+  ChineseName: "\u86CB"

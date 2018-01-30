@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FoodManager : MonoBehaviour {
-    Color OrigCol;
     public static string ObjectName;
     // Use this for initialization
 

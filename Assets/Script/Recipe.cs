@@ -7,6 +7,7 @@ public class Recipe : ScriptableObject {
 
     public string RecipeName;
     public Item[] foods;
+    public string ChineseName;
 
     
 

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: corn
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 34b7c2bd2410b4beda3e081d680789a2, type: 3}
+  ChineseName: "\u7C9F\u7C73"

@@ -40,14 +40,17 @@ public class RecipeManager : MonoBehaviour {
         Debug.Log(testList);
         
         Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/" + chosenDish[PageCounter]);
-        titleText.text = "Recipt for " + CorrectRecipeFoods.name;
+            titleText.text =  CorrectRecipeFoods.ChineseName +"的菜單";                //Chi
+            //titleText.text = "Recipe of "+CorrectRecipeFoods.ChineseName;             //Eng
         for (int i = 0; i < CorrectRecipeFoods.foods.Length; i++)
             {
                 itemName[i].enabled = true;
                 itemImages[i].enabled = true;
                 itemImages[i].sprite = CorrectRecipeFoods.foods[i].sprite;
-                itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].name + "\n");
-                count++;
+                itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].ChineseName + "\n");             //Chi
+                //itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].name + "\n");             //Eng
+
+            count++;
 
             }
 	}
@@ -59,7 +62,8 @@ public class RecipeManager : MonoBehaviour {
             Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/" + chosenDish[PageCounter]);
             Debug.Log(CorrectRecipeFoods.name);
             changePage = false;
-            titleText.text = "Recipt for" + CorrectRecipeFoods.name;
+            titleText.text =  CorrectRecipeFoods.ChineseName +"的菜單";                //Chi
+            //titleText.text = "Recipe of "+CorrectRecipeFoods.ChineseName;             //Eng
             for (int i = 0; i < CorrectRecipeFoods.foods.Length; i++)
             {
                 if (!(itemName[i].enabled && itemImages[i].enabled))
@@ -68,7 +72,8 @@ public class RecipeManager : MonoBehaviour {
                     itemImages[i].enabled = true;
                 }
                 itemImages[i].sprite = CorrectRecipeFoods.foods[i].sprite;
-                itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].name + "\n");
+                itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].ChineseName + "\n");             //Chi
+                //itemName[i].text = (count + ". " + CorrectRecipeFoods.foods[i].name + "\n");             //Eng
                 count++;
             }
         }

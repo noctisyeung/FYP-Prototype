@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: sugar
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d1cb88aae6aecdb4f918cffc183507a5, type: 3}
+  ChineseName: "\u7CD6"

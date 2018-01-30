@@ -54,7 +54,10 @@ public class CustomerSpawn : MonoBehaviour
 			yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
 
 			randRecipe = recipe[Random.Range(0, recipe.Count)];
-			chosenDish = dishText.text = randRecipe;
+            Recipe SelectRecipe = Resources.Load<Recipe>("recipes/" + randRecipe);
+            dishText.text = "老闆整碗 "+SelectRecipe.ChineseName;                //Chi
+            //dishText.text = "I want a "+SelectRecipe.ChineseName;                //Eng
+            chosenDish = SelectRecipe.name;
 			bubble.SetActive(true);
 
 			if (totalCustomer - customerServed <= recipe.Count)

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: meat
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5ddece47e65a5744c930c8f8232c48df, type: 3}
+  ChineseName: "\u8C6C\u8089"
