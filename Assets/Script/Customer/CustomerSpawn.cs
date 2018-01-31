@@ -10,6 +10,7 @@ public class CustomerSpawn : MonoBehaviour
 	public GameObject bubble;
 	public RecipeManager recipeManager;
 	public GameObject currentCustomer;
+    public GameObject fire;
 	private Text dishText;
 	private AudioManager audioManager;
 
@@ -52,8 +53,9 @@ public class CustomerSpawn : MonoBehaviour
 		{
 			yield return new WaitUntil(() => !currentCustomer);
 			yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
+            yield return new WaitUntil(() => !fire.activeInHierarchy);
 
-			randRecipe = recipe[Random.Range(0, recipe.Count)];
+            randRecipe = recipe[Random.Range(0, recipe.Count)];
             Recipe SelectRecipe = Resources.Load<Recipe>("recipes/" + randRecipe);
             dishText.text = "老闆整碗 "+SelectRecipe.ChineseName;                //Chi
             //dishText.text = "I want a "+SelectRecipe.ChineseName;                //Eng
