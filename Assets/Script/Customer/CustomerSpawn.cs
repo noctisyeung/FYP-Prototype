@@ -49,11 +49,16 @@ public class CustomerSpawn : MonoBehaviour
 		yield return new WaitUntil(() => recipeManager.isStart);
 		List<string> recipe = new List<string>(recipeManager.chosenDish);
 
-		for (int i = 0; i < totalCustomer; i++)
+		while (true)
 		{
 			yield return new WaitUntil(() => !currentCustomer);
-			yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
             yield return new WaitUntil(() => !fire.activeInHierarchy);
+            yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
+
+            if (customerServed >= totalCustomer)
+            {
+                yield break;
+            }
 
             randRecipe = recipe[Random.Range(0, recipe.Count)];
             Recipe SelectRecipe = Resources.Load<Recipe>("recipes/" + randRecipe);
