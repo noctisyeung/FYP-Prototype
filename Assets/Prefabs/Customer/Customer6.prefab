@@ -1090,8 +1090,8 @@ MonoBehaviour:
   CS: {fileID: 114347388877362552, guid: b9c9ed6f14dfa6d49abee3cc51387755, type: 2}
   scoreManager: {fileID: 114050400614534564, guid: 1be730b6cc6c1f24d9f2562f4a9368d2,
     type: 2}
-  dishScore: 0
-  wrongScore: 0
+  dishScore: 100
+  wrongScore: 20
 --- !u!137 &137289641047450836
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

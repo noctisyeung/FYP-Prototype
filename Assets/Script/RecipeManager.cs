@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class RecipeManager : MonoBehaviour {
 	// Use this for initialization
 	public TimerManager currentTime;
     public ScoreManager scoreManager;
+    public ReportNLevelManager RnL;
+
     public int numOfDish; //controling the level dish
     public string[] chosenDish;
     public string[] recipe;// = { "testrecipe1", "testrecipe2", "testrecipe3" };
@@ -27,6 +30,7 @@ public class RecipeManager : MonoBehaviour {
 
     void Start () {
 		int count = 1;
+        StartCoroutine(SwitchToVR());
         tempStartTime = currentTime.startTime;
         Debug.Log(recipe.Length);
         chosenDish = new string[numOfDish];
@@ -117,5 +121,19 @@ public class RecipeManager : MonoBehaviour {
             changePage = false;
             Debug.Log("false" + PageCounter);
         }
+    }
+
+    IEnumerator SwitchToVR()
+    {
+        // Device names are lowercase, as returned by `XRSettings.supportedDevices`.
+        string desiredDevice = "cardboard"; // Or "cardboard".
+
+        XRSettings.LoadDeviceByName(desiredDevice);
+
+        // Must wait one frame after calling `XRSettings.LoadDeviceByName()`.
+        yield return null;
+
+        // Now it's ok to enable VR mode.
+        XRSettings.enabled = true;
     }
 }

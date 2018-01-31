@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour {
 
     public CustomerSpawn customerSpawn;
     public RecipeManager recipeManager;
+    public ReportNLevelManager RnL;
     public GameObject scoreCanvas;
 	public GameObject leftBlocker;
 	public GameObject rightBlocker;
@@ -30,6 +31,7 @@ public class ScoreManager : MonoBehaviour {
             showStar(showStarCalculator(levelTotalScore));
             scoreText.text = levelTotalScore.ToString();
             recipeManager.isStart = false;
+            RnL.isLevelEnd = true;
         }
 
 
