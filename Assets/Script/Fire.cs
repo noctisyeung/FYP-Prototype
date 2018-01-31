@@ -24,7 +24,10 @@ public class Fire : MonoBehaviour {
     {
         yield return new WaitUntil(() => recipeManager.isStart);
         yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
-        fire.SetActive(true);
-        customerSpawn.hideCustomer();
+        if (recipeManager.isStart)
+        {
+            fire.SetActive(true);
+            customerSpawn.hideCustomer();
+        }
     }
 }
