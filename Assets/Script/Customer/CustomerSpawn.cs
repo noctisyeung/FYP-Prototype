@@ -59,6 +59,8 @@ public class CustomerSpawn : MonoBehaviour
                 yield break;
             }
 
+            yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
+
             randRecipe = recipe[Random.Range(0, recipe.Count)];
             Recipe SelectRecipe = Resources.Load<Recipe>("recipes/" + randRecipe);
             dishText.text = "老闆整碗 " + SelectRecipe.ChineseName;                //Chi
@@ -74,8 +76,6 @@ public class CustomerSpawn : MonoBehaviour
             currentCustomer = Instantiate(randCustomer, transform.position, transform.rotation);
             currentCustomer.transform.parent = gameObject.transform;
             customers.Remove(randCustomer);
-
-            yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
         }
     }
 
