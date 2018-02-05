@@ -13,6 +13,7 @@ public class GetObject : MonoBehaviour{
     private Item item;
     private CustomerController CC;
 	private AudioManager audioManager;
+    public GameObject Water;
 
     // Use this for initialization
     void Start () {
@@ -29,6 +30,13 @@ public class GetObject : MonoBehaviour{
         {
             audioManager.StopPlayBG();
             SubmitButton.SetActive(false);
+            inventory.RemoveAllItem();
+        }
+        if (Water.activeInHierarchy)
+        {
+            audioManager.StopPlayBG();
+            SubmitButton.SetActive(false);
+            inventory.RemoveAllItem();
         }
 
         //   if (SelectedTime >= 2.2f)
@@ -66,36 +74,47 @@ public class GetObject : MonoBehaviour{
     }
     public void SelectItem()
     {
-        string temp = FoodManager.PassObjcetName();
+            string temp = FoodManager.PassObjcetName();
         Debug.Log("The selection is :" + temp);
-        if (temp == "Prop_RubbishBin_02")
-        {
-            audioManager.Play("Remove");
-            inventory.RemoveItem();
-        }
-        else if (temp == "submit")
-        {
-            CC = FindObjectOfType<CustomerController>();
-            CC.CheckFood();
-            inventory.RemoveAllItem();
-        }
-        else if (temp == "fireex")
-        {
-            if (Fire.activeInHierarchy == true)
+            switch (temp)
             {
-                audioManager.Play("FireExtinguisher");
-                customerSpawn.unhideCustomer();
-                Fire.SetActive(false);
-                SubmitButton.SetActive(true);
-                audioManager.StartPlayBG();
+                case "Prop_RubbishBin_02":
+                    audioManager.Play("Remove");
+                    inventory.RemoveItem();
+                    break;
+                case "submit":
+                    CC = FindObjectOfType<CustomerController>();
+                    CC.CheckFood();
+                    inventory.RemoveAllItem();
+                    break;
+                case "fireex":
+                    if (Fire.activeInHierarchy == true)
+                    {
+                        audioManager.Play("FireExtinguisher");
+                        customerSpawn.unhideCustomer();
+                        Fire.SetActive(false);
+                        SubmitButton.SetActive(true);
+                        audioManager.StartPlayBG();
+                    }
+                    break;
+                case "TurnOffWater":
+                    if (Water.activeInHierarchy == true)
+                    {
+                        customerSpawn.unhideCustomer();
+                        Water.SetActive(false);
+                        SubmitButton.SetActive(true);
+                        audioManager.Play("TurnOffWater");
+                        audioManager.StartPlayBG();
+                    }
+                    break;
+                default:
+                    audioManager.Play("Select");
+                    item = Resources.Load<Item>(temp);
+                    Debug.Log(item);
+                    inventory.AddItem(item);
+                    break;
+
             }
-        }
-        else
-        {
-            audioManager.Play("Select");
-            item = Resources.Load<Item>(temp);
-            Debug.Log(item);
-            inventory.AddItem(item);
-        }
+        
     }
 }

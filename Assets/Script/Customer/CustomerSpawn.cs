@@ -63,7 +63,7 @@ public class CustomerSpawn : MonoBehaviour
 
             randRecipe = recipe[Random.Range(0, recipe.Count)];
             Recipe SelectRecipe = Resources.Load<Recipe>("recipes/" + randRecipe);
-            dishText.text = "老闆整碗 " + SelectRecipe.ChineseName;                //Chi
+            dishText.text = "老闆整個 " + SelectRecipe.ChineseName;                //Chi
             //dishText.text = "I want a "+SelectRecipe.ChineseName;                //Eng
             chosenDish = SelectRecipe.name;
             bubble.SetActive(true);

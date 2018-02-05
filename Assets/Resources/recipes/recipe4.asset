@@ -14,5 +14,5 @@ MonoBehaviour:
   RecipeName: recipe4
   foods:
   - {fileID: 11400000, guid: 0a8c4c64a81a54a429f3bf37c8a81548, type: 2}
-  - {fileID: 11400000, guid: 84ef99467da4a4abea6e0cffcefe066e, type: 2}
-  ChineseName: "\u96DE&\u7C9F\u7C73"
+  - {fileID: 11400000, guid: ea0faa03113725e43895d6eab4d2550a, type: 2}
+  ChineseName: "\u9E7D\u7117\u96DE"

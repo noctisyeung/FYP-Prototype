@@ -12,7 +12,7 @@ public class ResetView : MonoBehaviour
      void Update () {
          if (Input.GetMouseButtonDown(0)) {
             Debug.Log("Pressed");
-            gr.Recenter ();
+            gr.Recenter();
          }
  
      }

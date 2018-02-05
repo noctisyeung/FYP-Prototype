@@ -19,6 +19,7 @@ public class FoodManager : MonoBehaviour {
     {
 
         ObjectName = this.gameObject.name;
+       // Debug.Log("Item Name from FoodManager :"+ObjectName);
     }
 
     public static string PassObjcetName()
