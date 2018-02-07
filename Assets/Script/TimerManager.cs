@@ -22,7 +22,7 @@ public class TimerManager : MonoBehaviour {
             startTime -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(startTime / 60F);
 			int seconds = Mathf.FloorToInt(startTime - minutes * 60);
-			timeText.text = "Time: " + minutes + " : " + seconds;
+			timeText.text = "時間: " + minutes + " : " + seconds;
 			if (seconds == 0&&minutes == 0 )
             {
                     IsTimeEnd = true;
@@ -31,7 +31,7 @@ public class TimerManager : MonoBehaviour {
         }
         else
         {
-            timeText.text = "Ended";
+            timeText.text = "夠鐘啦!!";
         }
     }
 }

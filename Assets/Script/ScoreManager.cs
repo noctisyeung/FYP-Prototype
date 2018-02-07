@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour {
 	public GameObject leftBlocker;
 	public GameObject rightBlocker;
     public Text scoreText;
+    public Text scoreTitle;
 
     public int levelTotalScore = 0; //The total socre user got
     public int scoreSplitPoint; //To control the score arrangement
@@ -30,6 +31,7 @@ public class ScoreManager : MonoBehaviour {
 			rightBlocker.SetActive(true);
             showStar(showStarCalculator(levelTotalScore));
             scoreText.text = levelTotalScore.ToString();
+            setTitle();
             recipeManager.isStart = false;
             RnL.isLevelEnd = true;
         }
@@ -69,5 +71,11 @@ public class ScoreManager : MonoBehaviour {
             if (!StarImage[i].enabled)
                 StarImage[i].enabled = true;
         }
+    }
+
+    private void setTitle()
+    {
+        string username = PlayerPrefs.GetString("UserName").ToString();
+        scoreTitle.text = username + "恭喜曬你完成任務!";
     }
 }

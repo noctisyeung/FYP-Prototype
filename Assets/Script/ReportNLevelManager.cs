@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 
 public class ReportNLevelManager : MonoBehaviour {
-    public static string userName;
+    private string userName;
     public static int finalScoreForAllLevel = 0;
     public static int levelCounter = 1;
     public bool isLevelEnd = false;
@@ -17,11 +17,15 @@ public class ReportNLevelManager : MonoBehaviour {
     private string serverAddress = "localhost:8099/test";
 
     public ScoreManager scoreManager;
-    public Text userNameText;
+    public InputField userNameText;
 
 	// Use this for initialization
 	void Start () {
         scoreManager = FindObjectOfType<ScoreManager>();
+        if (SceneManager.GetActiveScene().name == "InputTest" && PlayerPrefs.GetString("UserName")!=null)
+        {
+            userNameText.text = PlayerPrefs.GetString("UserName").ToString();
+        }
     }
 	
 	// Update is called once per frame
@@ -33,6 +37,7 @@ public class ReportNLevelManager : MonoBehaviour {
             else
                 userName = userNameText.text;
             isNameEntered = false;
+            PlayerPrefs.SetString("UserName", userName);
             Debug.Log(userName);
             //SceneManager.LoadScene("TestLevel2");   
         }
@@ -43,6 +48,10 @@ public class ReportNLevelManager : MonoBehaviour {
             StartCoroutine(sendUserDataToDB(userName, scoreManager.levelTotalScore, finalScoreForAllLevel));
             levelCounter++;
             isLevelEnd = false;
+        }
+        if(Input.GetKeyDown(KeyCode.Space)) //Debug use
+        {
+            PlayerPrefs.DeleteAll();
         }
 	}
 
@@ -56,7 +65,7 @@ public class ReportNLevelManager : MonoBehaviour {
     {
         WWWForm form = new WWWForm();
         form.AddField("api", apikey);
-        form.AddField("username", username);
+        form.AddField("username", PlayerPrefs.GetString("UserName").ToString());
         form.AddField("levelscore", levelScore);
         form.AddField("currentlevel", levelCounter);
         if (levelCounter == 5)

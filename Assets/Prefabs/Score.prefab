@@ -54,11 +54,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerSpawn: {fileID: 0}
   recipeManager: {fileID: 0}
-  RnL: {fileID: 0}
+  RnL: {fileID: 114326498258184922}
   scoreCanvas: {fileID: 0}
   leftBlocker: {fileID: 0}
   rightBlocker: {fileID: 0}
   scoreText: {fileID: 0}
+  scoreTitle: {fileID: 0}
   levelTotalScore: 0
   scoreSplitPoint: 50
   levelPerfectScore: 700
