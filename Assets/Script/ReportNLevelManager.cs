@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class ReportNLevelManager : MonoBehaviour {
     private string userName;
-    public static int finalScoreForAllLevel = 0;
+    public static int finalScoreForAllLevel = 0; //Not using right now
     public static int levelCounter = 1;
     public bool isLevelEnd = false;
     private string defaultName = "Super Hero";
@@ -45,6 +45,8 @@ public class ReportNLevelManager : MonoBehaviour {
         if (isLevelEnd)
         {
             finalScoreForAllLevel += scoreManager.levelTotalScore;
+			PlayerPrefs.SetInt ("LevelCounter", levelCounter);
+			PlayerPrefs.SetInt ("Level" + levelCounter + "Score", scoreManager.levelTotalScore);
             StartCoroutine(sendUserDataToDB(userName, scoreManager.levelTotalScore, finalScoreForAllLevel));
             levelCounter++;
             isLevelEnd = false;

@@ -65,6 +65,7 @@ public class HintManager : MonoBehaviour {
                 hintFoods.SetActive(false);
                 hintTitleText.enabled = false;
                 showHint = false;
+				emptyRecipe ();
             }
         }
     }
@@ -81,4 +82,12 @@ public class HintManager : MonoBehaviour {
             showingTime = tempShowingTime;
         }
     }
+
+	public void emptyRecipe()
+	{
+		for (int i = 0; i < numItemSlots; i++) {
+			itemName[i].enabled = false;
+			itemImages[i].enabled = false;
+		}
+}
 }

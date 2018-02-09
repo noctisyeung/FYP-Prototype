@@ -9,6 +9,7 @@ public class TimerManager : MonoBehaviour {
     private int usedTime;
     Text timeText;
     public bool IsTimeEnd;
+	public RecipeManager recipeManager;
     // Use this for initialization
     void Awake()
     {
@@ -32,6 +33,8 @@ public class TimerManager : MonoBehaviour {
         else
         {
             timeText.text = "夠鐘啦!!";
+			if (!recipeManager.isStart)
+			recipeManager.StartTheGame ();
         }
     }
 }

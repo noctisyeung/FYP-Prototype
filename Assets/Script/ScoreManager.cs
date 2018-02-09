@@ -76,6 +76,13 @@ public class ScoreManager : MonoBehaviour {
     private void setTitle()
     {
         string username = PlayerPrefs.GetString("UserName").ToString();
-        scoreTitle.text = username + "恭喜曬你完成任務!";
+		int currentLevel = PlayerPrefs.GetInt ("LevelCounter");
+		int userScoreSave = PlayerPrefs.GetInt ("Level" + currentLevel + "Score");
+		if (userScoreSave == 0)
+        	scoreTitle.text = username + "恭喜曬你完成任務!";
+		else if (userScoreSave <= levelTotalScore)
+			scoreTitle.text = username + "今次沒有太大進步，下次再努力！";
+		else if (userScoreSave > levelTotalScore)
+			scoreTitle.text = username + "今次有進步，再接再厲！";
     }
 }

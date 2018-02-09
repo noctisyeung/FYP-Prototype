@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using UnityEngine.Audio;
 
 public class RecipeManager : MonoBehaviour {
 	// Use this for initialization
@@ -22,6 +23,8 @@ public class RecipeManager : MonoBehaviour {
     private string testList = "list: ";
 	public GameObject BlockerLeft;
 	public GameObject BlockerRight;
+	public Button NextButton;
+	public Button PassButton;
 	public bool isStart = false;
 
     public Image[] itemImages = new Image[numItemSlots];
@@ -81,6 +84,16 @@ public class RecipeManager : MonoBehaviour {
                 count++;
             }
         }
+		if (PageCounter <= 0) {
+			pageButtonVisualControl (PassButton, false);
+		} else {
+			pageButtonVisualControl (PassButton, true);
+		}
+		if (PageCounter + 1 >= numOfDish){
+			pageButtonVisualControl (NextButton, false);
+		} else {
+			pageButtonVisualControl (NextButton, true);
+		}
 	}
 	public void StartTheGame ()
 	{
@@ -100,6 +113,7 @@ public class RecipeManager : MonoBehaviour {
         {
             PageCounter += 1;
             changePage = true;
+			emptyRecipe ();
             Debug.Log("true n" + PageCounter);
         }
         else
@@ -114,6 +128,7 @@ public class RecipeManager : MonoBehaviour {
         {
             PageCounter -= 1;
             changePage = true;
+			emptyRecipe ();
             Debug.Log("true p" + PageCounter);
         }
         else
@@ -136,4 +151,18 @@ public class RecipeManager : MonoBehaviour {
         // Now it's ok to enable VR mode.
         XRSettings.enabled = true;
     }
+
+	public void emptyRecipe()
+	{
+		for (int i = 0; i < numItemSlots; i++) {
+			itemName[i].enabled = false;
+			itemImages[i].enabled = false;
+		}
+	}
+
+	public void pageButtonVisualControl (Button pageButton, bool isTurnedOn)
+	{
+		pageButton.interactable = isTurnedOn;
+		pageButton.image.enabled = isTurnedOn;
+	}
 }
