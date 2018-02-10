@@ -162,7 +162,10 @@ public class RecipeManager : MonoBehaviour {
 
 	public void pageButtonVisualControl (Button pageButton, bool isTurnedOn)
 	{
-		pageButton.interactable = isTurnedOn;
-		pageButton.image.enabled = isTurnedOn;
-	}
+
+        pageButton.interactable = isTurnedOn;
+        pageButton.image.enabled = isTurnedOn;
+        pageButton.transform.GetChild(0).GetComponentInChildren<Image>().enabled = isTurnedOn;
+
+    }
 }
