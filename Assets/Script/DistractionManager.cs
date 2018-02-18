@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DistractionManager : MonoBehaviour {
 
@@ -11,43 +11,70 @@ public class DistractionManager : MonoBehaviour {
     public CustomerSpawn customerSpawn;
     public GameObject fire;
     public GameObject water;
-
-    private AudioManager audioManager;
-
+    public GameObject wink;
+    public float Hiddentimer;
+    public AudioManager audioManager;
     void Start () {
+        Hiddentimer = 0f;
         StartCoroutine(SetDistraction());
     }
-	
-	void Update () {
-        
+
+    void Update()
+    {
+        if (wink.activeInHierarchy)
+        {
+            Hiddentimer += Time.deltaTime;
+
+            if (Hiddentimer >= 3.5f)
+            {
+                Debug.Log(wink.transform.GetChild(0).GetComponentInChildren<Text>().text);
+                wink.transform.GetChild(0).GetComponentInChildren<Text>().gameObject.SetActive(true);
+            }
+            if (Hiddentimer >= 5f)
+            {
+                wink.SetActive(false);
+                isDistractioHappened = false;
+                customerSpawn.unhideCustomer();
+                audioManager.StartPlayBG();
+
+            }
+        }
     }
 
     IEnumerator SetDistraction()
     {
         yield return new WaitUntil(() => recipeManager.isStart);
         yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
-
-        int RandomSelect = Random.Range(0, 2);
+        int RandomSelect = Random.Range(0, 3);
         Debug.Log(RandomSelect);
-        if (RandomSelect == 0)
+        switch (RandomSelect)
         {
-            if (recipeManager.isStart && customerSpawn.currentCustomer)// && !water.activeInHierarchy)                //set fire
-            {
-                fire.SetActive(true);
-                isDistractioHappened = true;
-                customerSpawn.hideCustomer();
-            }
+            case 0:
+                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !water.activeInHierarchy)                //set fire
+                {
+                    fire.SetActive(true);
+                    isDistractioHappened = true;
+                    customerSpawn.hideCustomer();
+                }
+                break;
+            case 1:
+                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set water
+                {
+                    water.SetActive(true);
+                    isDistractioHappened = true;
+                    customerSpawn.hideCustomer();
+                }
+                break;
+            case 2:
+                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set water
+                {
+                    wink.SetActive(true);
+                    isDistractioHappened = true;
+                    customerSpawn.hideCustomer();
+                }
+                break;
+            default:
+                break;
         }
-        else
-        {
-            if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set water
-            {
-                water.SetActive(true);
-                isDistractioHappened = true;
-                customerSpawn.hideCustomer();
-            }
-        }
-
-
     }
 }

@@ -14,6 +14,7 @@ public class GetObject : MonoBehaviour{
     private CustomerController CC;
 	private AudioManager audioManager;
     public GameObject Water;
+    public GameObject wink;
 
     // Use this for initialization
     void Start () {
@@ -38,39 +39,44 @@ public class GetObject : MonoBehaviour{
             SubmitButton.SetActive(false);
             inventory.RemoveAllItem();
         }
+        if (wink.activeInHierarchy)
+        {
+            audioManager.StopPlayBG();
+            inventory.RemoveAllItem();
+        }
 
         //   if (SelectedTime >= 2.2f)
         // {
-       /* GetTemp.enabled = false;
-        string temp = FoodManager.PassObjcetName();
-        Debug.Log("The selection is :" + temp);
-        if (temp == "Prop_RubbishBin_02")
-        {
-            audioManager.Play("Remove");
-            inventory.RemoveItem();
-        }
-        else if (temp == "submit")
-        {
-            CC = FindObjectOfType<CustomerController>();
-            CC.CheckFood();
-            inventory.RemoveAllItem();
-        }
-        else if (temp == "fireex" && Fire.activeInHierarchy)
-        {
-            Fire.SetActive(!Fire.activeInHierarchy);
-            SubmitButton.SetActive(!SubmitButton.activeInHierarchy);
-        }
-        else
-        {
-            audioManager.Play("Select");
-            item = Resources.Load<Item>(temp);
-            Debug.Log(item);
-            inventory.AddItem(item);
-        }
+        /* GetTemp.enabled = false;
+         string temp = FoodManager.PassObjcetName();
+         Debug.Log("The selection is :" + temp);
+         if (temp == "Prop_RubbishBin_02")
+         {
+             audioManager.Play("Remove");
+             inventory.RemoveItem();
+         }
+         else if (temp == "submit")
+         {
+             CC = FindObjectOfType<CustomerController>();
+             CC.CheckFood();
+             inventory.RemoveAllItem();
+         }
+         else if (temp == "fireex" && Fire.activeInHierarchy)
+         {
+             Fire.SetActive(!Fire.activeInHierarchy);
+             SubmitButton.SetActive(!SubmitButton.activeInHierarchy);
+         }
+         else
+         {
+             audioManager.Play("Select");
+             item = Resources.Load<Item>(temp);
+             Debug.Log(item);
+             inventory.AddItem(item);
+         }
 
-        //}
-        */
-        
+         //}
+         */
+
     }
     public void SelectItem()
     {
