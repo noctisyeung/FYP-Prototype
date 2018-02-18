@@ -14,7 +14,8 @@ public class RecipeManager : MonoBehaviour {
     public int numOfDish; //controling the level dish
     public string[] chosenDish;
     public string[] recipe;// = { "testrecipe1", "testrecipe2", "testrecipe3" };
-    public int TimeScore;
+    public int TimeScore; //shared variable for score to calculate
+    public int usedTimeForRemember; //shared variable for report
     private float tempStartTime;
     private int PageCounter = 0; //select food use
 	public Text titleText;
@@ -25,7 +26,7 @@ public class RecipeManager : MonoBehaviour {
 	public GameObject BlockerRight;
 	public Button NextButton;
 	public Button PassButton;
-	public bool isStart = false;
+	public bool isStart = false; //Used to determind is the ingame started
 
     public Image[] itemImages = new Image[numItemSlots];
 
@@ -104,7 +105,8 @@ public class RecipeManager : MonoBehaviour {
 			BlockerLeft.SetActive(false);
 			BlockerRight.SetActive(false);
             isStart = true;
-            TimeScore = TimeScore - (Mathf.FloorToInt(tempStartTime) - Mathf.FloorToInt(currentTime.startTime));
+            usedTimeForRemember = (Mathf.FloorToInt(tempStartTime) - Mathf.FloorToInt(currentTime.startTime));
+            TimeScore = TimeScore - usedTimeForRemember;
             scoreManager.levelTotalScore += TimeScore;
 	}
     public void NextRecipe ()

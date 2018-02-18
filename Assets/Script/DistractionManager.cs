@@ -6,6 +6,7 @@ public class DistractionManager : MonoBehaviour {
 
     public int waitMin;
     public int waitMax;
+    public bool isDistractioHappened = false; //used for the hint manager to control the hints count after distraction happened
     public RecipeManager recipeManager;
     public CustomerSpawn customerSpawn;
     public GameObject fire;
@@ -33,6 +34,7 @@ public class DistractionManager : MonoBehaviour {
             if (recipeManager.isStart && customerSpawn.currentCustomer)// && !water.activeInHierarchy)                //set fire
             {
                 fire.SetActive(true);
+                isDistractioHappened = true;
                 customerSpawn.hideCustomer();
             }
         }
@@ -41,6 +43,7 @@ public class DistractionManager : MonoBehaviour {
             if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set water
             {
                 water.SetActive(true);
+                isDistractioHappened = true;
                 customerSpawn.hideCustomer();
             }
         }

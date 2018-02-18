@@ -15,13 +15,32 @@ public class ReportNLevelManager : MonoBehaviour {
     private string apikey = "0d8144c5-4df7-4953-b813-f1104fe86dd1";
     private bool isNameEntered = false;
     private string serverAddress = "localhost:8099/test";
+    public List<float> usedTimeForEachCustomer = new List<float>(); //This List will used by customercontroller class
+    public List<int> usedHintsForEachCustomer = new List<int>();// This List will used by hint manager class
+    public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
 
+    public RecipeManager recipeManager;
     public ScoreManager scoreManager;
     public InputField userNameText;
 
+    SettingManager settingManager;
+
 	// Use this for initialization
 	void Start () {
-        scoreManager = FindObjectOfType<ScoreManager>();
+        if (PlayerPrefs.HasKey("NumberOfVisit") && SceneManager.GetActiveScene().name == "InputTest")
+        {
+            settingManager = FindObjectOfType<SettingManager>();
+            int numberOfVisit = PlayerPrefs.GetInt("NumberOfVisit");
+            ++numberOfVisit;
+            settingManager.CloseTheInputScreen();
+            PlayerPrefs.SetInt("NumberOfVisit", numberOfVisit);
+        }
+        else if (!PlayerPrefs.HasKey("NumberOfVisit") && SceneManager.GetActiveScene().name == "InputTest")
+        {
+            settingManager = FindObjectOfType<SettingManager>();
+            settingManager.OpenTheInputScreen();
+            PlayerPrefs.SetInt("NumberOfVisit", 1);
+        }
         if (SceneManager.GetActiveScene().name == "InputTest" && PlayerPrefs.GetString("UserName")!=null)
         {
             userNameText.text = PlayerPrefs.GetString("UserName").ToString();
@@ -33,9 +52,14 @@ public class ReportNLevelManager : MonoBehaviour {
 		if (isNameEntered)
         {
             if (userNameText.text == "")
+            {
                 userName = defaultName;
+                userNameText.text = userName;
+            }
             else
+            {
                 userName = userNameText.text;
+            }
             isNameEntered = false;
             PlayerPrefs.SetString("UserName", userName);
             Debug.Log(userName);
@@ -47,20 +71,25 @@ public class ReportNLevelManager : MonoBehaviour {
             finalScoreForAllLevel += scoreManager.levelTotalScore;
 			PlayerPrefs.SetInt ("LevelCounter", levelCounter);
 			PlayerPrefs.SetInt ("Level" + levelCounter + "Score", scoreManager.levelTotalScore);
-            StartCoroutine(sendUserDataToDB(userName, scoreManager.levelTotalScore, finalScoreForAllLevel));
+            /*foreach (float value in usedTimeForEachCustomer){ //Debug use
+                Debug.Log("This is the hints lists"+value);
+            }*/
+            DoSaveData();
+            //StartCoroutine(sendUserDataToDB(userName, scoreManager.levelTotalScore, finalScoreForAllLevel));
             levelCounter++;
             isLevelEnd = false;
         }
-        if(Input.GetKeyDown(KeyCode.Space)) //Debug use
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            PlayerPrefs.DeleteAll();
-        }
-	}
+            Debug.Log(PlayerPrefs.GetString("Level" + levelCounter + "Data"));
+            LoadSaveData();
+        }  
+        
+    }
 
     public void LoadMainScreen()
     {
         isNameEntered = true;
-     
     }
 
     IEnumerator sendUserDataToDB (string username, int levelScore, int allLevelScore)
@@ -89,6 +118,31 @@ public class ReportNLevelManager : MonoBehaviour {
         }
     }
 
+    public void DoSaveData()
+    {
+        SavePlayerData levelsave = new SavePlayerData();
+        levelsave.theTimeUsedToRememberTheitem = recipeManager.usedTimeForRemember;
+        levelsave.theTimeUsedToServeCustomer = usedTimeForEachCustomer;
+        levelsave.numOfHintsUsedForEachCustomer = usedHintsForEachCustomer;
+        levelsave.numOfHintsUsedAfterDistractionHappend = numOfHintsUsedAfterDistractionHappend;
+        PlayerPrefs.SetString("Level" + levelCounter + "Data", JsonUtility.ToJson(levelsave));
+    }
 
+    public void LoadSaveData()
+    {
+        SavePlayerData levelsave = new SavePlayerData();
+        JsonUtility.FromJsonOverwrite(PlayerPrefs.GetString("Level" + levelCounter + "Data"), levelsave);
+        recipeManager.usedTimeForRemember = levelsave.theTimeUsedToRememberTheitem;
+        usedTimeForEachCustomer = levelsave.theTimeUsedToServeCustomer;
+        usedHintsForEachCustomer = levelsave.numOfHintsUsedForEachCustomer;
+        numOfHintsUsedAfterDistractionHappend = levelsave.numOfHintsUsedAfterDistractionHappend;
+    }
+}
 
+class SavePlayerData
+{
+    public int theTimeUsedToRememberTheitem;
+    public List<float> theTimeUsedToServeCustomer = new List<float>();
+    public List<int> numOfHintsUsedForEachCustomer = new List<int>();
+    public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
 }

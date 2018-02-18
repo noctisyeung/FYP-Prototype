@@ -20,6 +20,7 @@ public class CustomerSpawn : MonoBehaviour
     public int minSpawnWait;
     public int maxSpawnWait;
     public int customerServed = 0;
+    public bool isCurrentFinished = false; //Used for hintmanager to control the update variable
 
     public bool killMode;
 
@@ -81,6 +82,7 @@ public class CustomerSpawn : MonoBehaviour
 
     public void destroyCustomer()
     {
+        isCurrentFinished = true;
         Destroy(currentCustomer);
         bubble.SetActive(false);
         currentCustomer = null;

@@ -52,5 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLevelEnd: 0
+  usedTimeForEachCustomer: []
+  usedHintsForEachCustomer: 
+  numOfHintsUsedAfterDistractionHappend: 
+  recipeManager: {fileID: 0}
   scoreManager: {fileID: 0}
   userNameText: {fileID: 0}

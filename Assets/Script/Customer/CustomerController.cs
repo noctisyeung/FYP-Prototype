@@ -7,10 +7,13 @@ public class CustomerController : MonoBehaviour
 {
 	public Sprite tick;
 	public Sprite cross;
+    public float stopwatch = 0;
+    private bool thisCustomerIsEnded = false; //Used in this class only
 	private Image answerImage;
     private Inventory inventory;
     public CustomerSpawn CS;
     public ScoreManager scoreManager;
+    ReportNLevelManager RnL;
     public int dishScore;
     public int wrongScore;
 	private AudioManager audioManager;
@@ -18,9 +21,21 @@ public class CustomerController : MonoBehaviour
 
 	private void Start()
 	{
+        RnL = FindObjectOfType<ReportNLevelManager>();
 		audioManager = FindObjectOfType<AudioManager>();
 		answerImage = GameObject.Find("AnswerImage").GetComponent<Image>();
 	}
+
+    private void Update()
+    {
+        if (!thisCustomerIsEnded)
+            stopwatch += Time.deltaTime;
+        else
+        {
+            RnL.usedTimeForEachCustomer.Add(stopwatch);
+            thisCustomerIsEnded = false;
+        }
+    } 
 
     public void CheckFood()
     {
@@ -68,8 +83,10 @@ public class CustomerController : MonoBehaviour
                 }
             }
                 Debug.Log("Selected Food correct!!!!!");
+                Debug.Log(stopwatch);
                 scoreManager.levelTotalScore += dishScore;
 				setCorrect();
+                thisCustomerIsEnded = true;
                 CS = FindObjectOfType<CustomerSpawn>();
 				CS.Invoke("destroyCustomer", destroyWait);
             }

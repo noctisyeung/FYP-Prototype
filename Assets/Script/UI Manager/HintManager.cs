@@ -10,6 +10,8 @@ public class HintManager : MonoBehaviour {
     public GameObject hintBtn;
     public GameObject hintFoods;
     public ScoreManager scoreManager;
+    ReportNLevelManager RnL;
+    DistractionManager distractionManager;
 
     public Text hintTitleText;
     public float showingTime;
@@ -18,6 +20,8 @@ public class HintManager : MonoBehaviour {
     private float tempShowingTime;
     private bool showHint = false;
     string currentHintFood;
+    private int hintCounter;
+    private int afterDistractionUsedHintCounter;
     
     public const int numItemSlots = 4;
     public Image[] itemImages = new Image[numItemSlots];
@@ -26,18 +30,19 @@ public class HintManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        distractionManager = FindObjectOfType<DistractionManager>();
         isButtonStart = false;
         hintBtn.SetActive(false);
         tempShowingTime = showingTime;
     }
     // Update is called once per frame
     void Update () {
-        if (recipeManager.isStart && !isButtonStart)
+        if (recipeManager.isStart && !isButtonStart && customerSpawn.currentCustomer != null)
         {
             hintBtn.SetActive(true);
             isButtonStart = true;
         }
-        else if (!recipeManager.isStart && isButtonStart)
+        else if ((!recipeManager.isStart && isButtonStart ) || customerSpawn.currentCustomer == null)
         {
             hintBtn.SetActive(false);
             isButtonStart = false;
@@ -68,12 +73,31 @@ public class HintManager : MonoBehaviour {
 				emptyRecipe ();
             }
         }
+        if (customerSpawn.isCurrentFinished && recipeManager.isStart)
+        {
+            RnL = FindObjectOfType<ReportNLevelManager>();
+            RnL.usedHintsForEachCustomer.Add(hintCounter);
+            RnL.numOfHintsUsedAfterDistractionHappend.Add(afterDistractionUsedHintCounter);
+            Debug.Log("usedhints" + hintCounter);
+            Debug.Log("after dis usedhint" + afterDistractionUsedHintCounter);
+            hintCounter = 0;
+            afterDistractionUsedHintCounter = 0;
+            if (distractionManager)
+                distractionManager.isDistractioHappened = false;
+            customerSpawn.isCurrentFinished = false;
+        }
     }
 
     public void showHintHandler()
     {
         if (recipeManager.isStart)
         {
+            ++hintCounter;
+            if (distractionManager)
+            {
+                if (distractionManager.isDistractioHappened)
+                    ++afterDistractionUsedHintCounter;
+            }
             showHint = true;
             scoreManager.levelTotalScore -= usedHintScore;
             hintBtn.SetActive(false);
