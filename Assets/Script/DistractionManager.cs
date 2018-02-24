@@ -21,7 +21,7 @@ public class DistractionManager : MonoBehaviour {
 
     void Update()
     {
-        if (wink.activeInHierarchy)
+        if (wink.activeInHierarchy)                     //for donothing distraction
         {
             Hiddentimer += Time.deltaTime;
 
@@ -53,28 +53,32 @@ public class DistractionManager : MonoBehaviour {
                 if (recipeManager.isStart && customerSpawn.currentCustomer)// && !water.activeInHierarchy)                //set fire
                 {
                     fire.SetActive(true);
-                    isDistractioHappened = true;
-                    customerSpawn.hideCustomer();
+                    DistractionStart();
                 }
                 break;
             case 1:
                 if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set water
                 {
                     water.SetActive(true);
-                    isDistractioHappened = true;
-                    customerSpawn.hideCustomer();
+                    DistractionStart();
                 }
                 break;
             case 2:
-                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set water
+                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set wink
                 {
                     wink.SetActive(true);
-                    isDistractioHappened = true;
-                    customerSpawn.hideCustomer();
+                    DistractionStart();
                 }
                 break;
             default:
                 break;
         }
+    }
+
+    private void DistractionStart()
+    {
+        isDistractioHappened = true;
+        customerSpawn.hideCustomer();
+
     }
 }
