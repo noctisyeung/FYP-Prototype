@@ -616,7 +616,7 @@ Prefab:
     - target: {fileID: 114347388877362552, guid: b9c9ed6f14dfa6d49abee3cc51387755,
         type: 2}
       propertyPath: totalCustomer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114347388877362552, guid: b9c9ed6f14dfa6d49abee3cc51387755,
         type: 2}
@@ -4662,8 +4662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afe5118278e1374189e9228b9f62be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitMin: 10
-  waitMax: 10
+  waitMin: 20
+  waitMax: 30
   isDistractioHappened: 0
   recipeManager: {fileID: 1139799853}
   customerSpawn: {fileID: 1643060014}

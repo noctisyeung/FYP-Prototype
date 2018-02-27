@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afe5118278e1374189e9228b9f62be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitMin: 10
-  waitMax: 10
+  waitMin: 20
+  waitMax: 30
   isDistractioHappened: 0
   recipeManager: {fileID: 1287688777}
   customerSpawn: {fileID: 1414753946}
