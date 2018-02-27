@@ -18,11 +18,14 @@ public class ReportNLevelManager : MonoBehaviour {
     public List<float> usedTimeForEachCustomer = new List<float>(); //This List will used by customercontroller class
     public List<int> usedHintsForEachCustomer = new List<int>();// This List will used by hint manager class
     public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
-
+    static List<SavePlayerData> sendDataList = new List<SavePlayerData>();
+    public bool uploaded = false;
     public RecipeManager recipeManager;
     public ScoreManager scoreManager;
     public InputField userNameText;
+    public string finaldataString;
 
+    public SendJsonObj senddata;
     SettingManager settingManager;
 
 	// Use this for initialization
@@ -74,7 +77,16 @@ public class ReportNLevelManager : MonoBehaviour {
             /*foreach (float value in usedTimeForEachCustomer){ //Debug use
                 Debug.Log("This is the hints lists"+value);
             }*/
-            DoSaveData();
+            DoEachCustomerData();
+            if (SceneManager.GetActiveScene().name == "Level3" )
+            {
+                DoSaveData();
+                if (uploaded == false)
+                {
+                    Postdata();
+                    uploaded = true;
+                }
+            }
             //StartCoroutine(sendUserDataToDB(userName, scoreManager.levelTotalScore, finalScoreForAllLevel));
             levelCounter++;
             isLevelEnd = false;
@@ -91,6 +103,29 @@ public class ReportNLevelManager : MonoBehaviour {
     {
         isNameEntered = true;
     }
+
+    public void Postdata()
+    {
+        Hashtable postHeader = new Hashtable();
+        postHeader.Add("Content-Type", "application/json");
+        var formData = System.Text.Encoding.UTF8.GetBytes(finaldataString);
+        WWW www1 = new WWW(serverAddress, formData, postHeader);
+        StartCoroutine("PostdataEnumerator", www1);
+    }
+    IEnumerator PostdataEnumerator(WWW www)
+    {
+        yield return www;
+        if(www.error != null)
+        {
+            Debug.Log("finish");
+        }
+        else
+        {
+            Debug.Log("error");
+        }
+    }
+
+
 
     IEnumerator sendUserDataToDB (string username, int levelScore, int allLevelScore)
     {
@@ -118,17 +153,23 @@ public class ReportNLevelManager : MonoBehaviour {
         }
     }
 
-
-
-
-    public void DoSaveData()
+    public void DoEachCustomerData()
     {
         SavePlayerData levelsave = new SavePlayerData();
         levelsave.theTimeUsedToRememberTheitem = recipeManager.usedTimeForRemember;
         levelsave.theTimeUsedToServeCustomer = usedTimeForEachCustomer;
         levelsave.numOfHintsUsedForEachCustomer = usedHintsForEachCustomer;
         levelsave.numOfHintsUsedAfterDistractionHappend = numOfHintsUsedAfterDistractionHappend;
-        PlayerPrefs.SetString("Level" + levelCounter + "Data", JsonUtility.ToJson(levelsave));
+        sendDataList.Add(levelsave);
+    }
+
+
+    public void DoSaveData()
+    {
+        senddata.UserName = PlayerPrefs.GetString("UserName");
+        senddata.Record = sendDataList.ToArray();
+        finaldataString = JsonUtility.ToJson(senddata);
+        Debug.Log(finaldataString);
     }
 
     public void LoadSaveData()
@@ -142,10 +183,19 @@ public class ReportNLevelManager : MonoBehaviour {
     }
 }
 
-class SavePlayerData
+[System.Serializable]
+public class SavePlayerData
 {
     public int theTimeUsedToRememberTheitem;
     public List<float> theTimeUsedToServeCustomer = new List<float>();
     public List<int> numOfHintsUsedForEachCustomer = new List<int>();
     public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
 }
+
+[System.Serializable]
+public class SendJsonObj
+{
+    public string UserName;
+    public SavePlayerData [] Record;
+}
+

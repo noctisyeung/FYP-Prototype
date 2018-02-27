@@ -34,7 +34,6 @@ public class RecipeManager : MonoBehaviour {
 
     void Start () {
 		int count = 1;
-        StartCoroutine(SwitchToVR());
         tempStartTime = currentTime.startTime;
         Debug.Log(recipe.Length);
         chosenDish = new string[numOfDish];
@@ -140,19 +139,7 @@ public class RecipeManager : MonoBehaviour {
         }
     }
 
-    IEnumerator SwitchToVR()
-    {
-        // Device names are lowercase, as returned by `XRSettings.supportedDevices`.
-        string desiredDevice = "cardboard"; // Or "cardboard".
 
-        XRSettings.LoadDeviceByName(desiredDevice);
-
-        // Must wait one frame after calling `XRSettings.LoadDeviceByName()`.
-        yield return null;
-
-        // Now it's ok to enable VR mode.
-        XRSettings.enabled = true;
-    }
 
 	public void emptyRecipe()
 	{

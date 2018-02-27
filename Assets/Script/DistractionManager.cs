@@ -45,7 +45,7 @@ public class DistractionManager : MonoBehaviour {
     {
         yield return new WaitUntil(() => recipeManager.isStart);
         yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
-        int RandomSelect = Random.Range(0, 3);
+        int RandomSelect = Random.Range(2, 3);
         Debug.Log(RandomSelect);
         switch (RandomSelect)
         {
