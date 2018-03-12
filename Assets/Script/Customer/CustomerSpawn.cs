@@ -21,6 +21,7 @@ public class CustomerSpawn : MonoBehaviour
     public int maxSpawnWait;
     public int customerServed = 0;
     public bool isCurrentFinished = false; //Used for hintmanager to control the update variable
+	public bool isCutomerSpawned = false;
 
     public bool killMode;
 
@@ -62,6 +63,7 @@ public class CustomerSpawn : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
 
+			isCutomerSpawned = true;
             randRecipe = recipe[Random.Range(0, recipe.Count)];
             Recipe SelectRecipe = Resources.Load<Recipe>("recipes/" + randRecipe);
             dishText.text = "老闆整個 " + SelectRecipe.ChineseName;                //Chi
@@ -82,7 +84,6 @@ public class CustomerSpawn : MonoBehaviour
 
     public void destroyCustomer()
     {
-        isCurrentFinished = true;
         Destroy(currentCustomer);
         bubble.SetActive(false);
         currentCustomer = null;

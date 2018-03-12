@@ -12,6 +12,7 @@ public class HintManager : MonoBehaviour {
     public ScoreManager scoreManager;
     ReportNLevelManager RnL;
     DistractionManager distractionManager;
+	CustomerController customerController;
 
     public Text hintTitleText;
     public float showingTime;
@@ -22,6 +23,7 @@ public class HintManager : MonoBehaviour {
     string currentHintFood;
     private int hintCounter;
     private int afterDistractionUsedHintCounter;
+	private int afterWrongUsedHintCounter;
     
     public const int numItemSlots = 4;
     public Image[] itemImages = new Image[numItemSlots];
@@ -78,14 +80,20 @@ public class HintManager : MonoBehaviour {
             RnL = FindObjectOfType<ReportNLevelManager>();
             RnL.usedHintsForEachCustomer.Add(hintCounter);
             RnL.numOfHintsUsedAfterDistractionHappend.Add(afterDistractionUsedHintCounter);
+			RnL.numOfHintsUsedAfterWrongAnswer.Add (afterWrongUsedHintCounter);
             Debug.Log("usedhints" + hintCounter);
             Debug.Log("after dis usedhint" + afterDistractionUsedHintCounter);
             hintCounter = 0;
             afterDistractionUsedHintCounter = 0;
+			afterWrongUsedHintCounter = 0;
             if (distractionManager)
                 distractionManager.isDistractioHappened = false;
             customerSpawn.isCurrentFinished = false;
         }
+		if (customerSpawn.isCutomerSpawned) {
+			customerController = FindObjectOfType<CustomerController> ();
+			customerSpawn.isCutomerSpawned = false;
+		}
     }
 
     public void showHintHandler()
@@ -95,8 +103,16 @@ public class HintManager : MonoBehaviour {
             ++hintCounter;
             if (distractionManager)
             {
-                if (distractionManager.isDistractioHappened)
-                    ++afterDistractionUsedHintCounter;
+				if (distractionManager.isDistractioHappened && customerController.isCustomerWrong) {
+					++afterDistractionUsedHintCounter;
+					++afterWrongUsedHintCounter;
+				}
+				if (distractionManager.isDistractioHappened && !customerController.isCustomerWrong) {
+					++afterDistractionUsedHintCounter;
+				}
+				if (!distractionManager.isDistractioHappened && customerController.isCustomerWrong) {
+					++afterWrongUsedHintCounter;
+				}
             }
             showHint = true;
             scoreManager.levelTotalScore -= usedHintScore;

@@ -18,6 +18,8 @@ public class ReportNLevelManager : MonoBehaviour {
     public List<float> usedTimeForEachCustomer = new List<float>(); //This List will used by customercontroller class
     public List<int> usedHintsForEachCustomer = new List<int>();// This List will used by hint manager class
     public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
+	public List<int> numOfWrongCounterForEachCustomer = new List<int>();
+	public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();
     static List<SavePlayerData> sendDataList = new List<SavePlayerData>();
     public bool uploaded = false;
     public RecipeManager recipeManager;
@@ -160,6 +162,8 @@ public class ReportNLevelManager : MonoBehaviour {
         levelsave.theTimeUsedToServeCustomer = usedTimeForEachCustomer;
         levelsave.numOfHintsUsedForEachCustomer = usedHintsForEachCustomer;
         levelsave.numOfHintsUsedAfterDistractionHappend = numOfHintsUsedAfterDistractionHappend;
+		levelsave.numOfWrongCounterForEachCustomer = numOfWrongCounterForEachCustomer;
+		levelsave.numOfHintsUsedAfterWrongAnswer = numOfHintsUsedAfterWrongAnswer;
         sendDataList.Add(levelsave);
     }
 
@@ -190,6 +194,8 @@ public class SavePlayerData
     public List<float> theTimeUsedToServeCustomer = new List<float>();
     public List<int> numOfHintsUsedForEachCustomer = new List<int>();
     public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
+	public List<int> numOfWrongCounterForEachCustomer = new List<int>();
+	public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();
 }
 
 [System.Serializable]

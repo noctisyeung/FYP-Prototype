@@ -18,6 +18,8 @@ public class CustomerController : MonoBehaviour
     public int wrongScore;
 	private AudioManager audioManager;
 	private int destroyWait = 5;
+	private int wrongCounter = 0;
+	public bool isCustomerWrong = false;
 
 	private void Start()
 	{
@@ -33,8 +35,12 @@ public class CustomerController : MonoBehaviour
         else
         {
             RnL.usedTimeForEachCustomer.Add(stopwatch);
+			RnL.numOfWrongCounterForEachCustomer.Add (wrongCounter);
+			wrongCounter = 0;
             thisCustomerIsEnded = false;
         }
+
+		//Debug.Log (isCustomerWrong);
     } 
 
     public void CheckFood()
@@ -66,6 +72,8 @@ public class CustomerController : MonoBehaviour
             {
                 Debug.Log("Selected Food incorrect"+ scoreManager.levelTotalScore);
                 dishScore -= wrongScore;
+				++wrongCounter;
+				isCustomerWrong = true;
 				setWrong();
                 return;
             }
@@ -78,6 +86,8 @@ public class CustomerController : MonoBehaviour
                 {
                         Debug.Log("Selected Food incorrect" + scoreManager.levelTotalScore);
                         dishScore -= wrongScore;
+						++wrongCounter;
+						isCustomerWrong = true;
 						setWrong();
                         return;
                 }
@@ -88,6 +98,8 @@ public class CustomerController : MonoBehaviour
 				setCorrect();
                 thisCustomerIsEnded = true;
                 CS = FindObjectOfType<CustomerSpawn>();
+				CS.isCurrentFinished = true;
+				Debug.Log ("cc" + CS.isCurrentFinished);
 				CS.Invoke("destroyCustomer", destroyWait);
             }
         }
