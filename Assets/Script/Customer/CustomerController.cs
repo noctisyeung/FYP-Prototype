@@ -21,6 +21,7 @@ public class CustomerController : MonoBehaviour
 	private int wrongCounter = 0;
 	public bool isCustomerWrong = false;
 
+
 	private void Start()
 	{
         RnL = FindObjectOfType<ReportNLevelManager>();
@@ -107,8 +108,11 @@ public class CustomerController : MonoBehaviour
 
 	private void setCorrect()
 	{
+		var tempColor = answerImage.color;
+		tempColor.a = 1f;
+		answerImage.color = tempColor;
 		answerImage.sprite = tick;
-		answerImage.enabled = true;
+	//	answerImage.enabled = true;
 		audioManager.Play("Correct");
 		Invoke("destroySet", destroyWait);
 	}
@@ -116,13 +120,17 @@ public class CustomerController : MonoBehaviour
 	private void setWrong()
 	{
 		answerImage.sprite = cross;
-		answerImage.enabled = true;
+	//	answerImage.enabled = true;
 		audioManager.Play("Wrong");
 		Invoke("destroySet", destroyWait);
 	}
 
 	private void destroySet()
 	{
-		answerImage.enabled = false;
+		answerImage.sprite = null;
+		var tempColor = answerImage.color;
+		tempColor.a = 0f;
+		answerImage.color = tempColor;
+	//	answerImage.enabled = false;
 	}
 }

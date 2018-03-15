@@ -14,6 +14,9 @@ public class DistractionManager : MonoBehaviour {
     public GameObject wink;
     public float Hiddentimer;
     public AudioManager audioManager;
+	public Image AnsImage;	
+	public Sprite tick;
+
     void Start () {
         Hiddentimer = 0f;
         StartCoroutine(SetDistraction());
@@ -27,7 +30,7 @@ public class DistractionManager : MonoBehaviour {
 
             if (Hiddentimer >= 3.5f)
             {
-                Debug.Log(wink.transform.GetChild(0).GetComponentInChildren<Text>().text);
+         //       Debug.Log(wink.transform.GetChild(0).GetComponentInChildren<Text>().text);
                 wink.transform.GetChild(0).GetComponentInChildren<Text>().gameObject.SetActive(true);
             }
             if (Hiddentimer >= 5f)
@@ -43,32 +46,34 @@ public class DistractionManager : MonoBehaviour {
 
     IEnumerator SetDistraction()
     {
-        yield return new WaitUntil(() => recipeManager.isStart);
-        yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
+		Sprite ansImageName = AnsImage.sprite;
+//		Debug.Log (ansImageName);
+		int waitingTime = Random.Range (waitMin, waitMax);
+//		Debug.Log ("start dis");
+        yield return new WaitUntil(() => recipeManager.isStart);				//check the game is start
+//		Debug.Log("Game start");
+		yield return new WaitForSeconds(waitingTime);							//wait for random time
+//		Debug.Log("Wait for"+ waitingTime);
+		yield return new WaitUntil(() => customerSpawn.currentCustomer );		//check if there are any customer
+		yield return new WaitUntil(() => ansImageName != tick );				//make sure the distraction will not happen in showing the correct tick 
+//		Debug.Log (ansImageName);
+//		Debug.Log (customerSpawn.currentCustomer);
+		yield return new WaitForSeconds(3);										//buff time for next customer if the distraction is happen in the waiting custion spawn time
         int RandomSelect = Random.Range(0, 3);
-        Debug.Log(RandomSelect);
+  //      Debug.Log(RandomSelect);
         switch (RandomSelect)
         {
             case 0:
-                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !water.activeInHierarchy)                //set fire
-                {
                     fire.SetActive(true);
                     DistractionStart();
-                }
                 break;
             case 1:
-                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set water
-                {
                     water.SetActive(true);
                     DistractionStart();
-                }
                 break;
             case 2:
-                if (recipeManager.isStart && customerSpawn.currentCustomer)// && !fire.activeInHierarchy)                //set wink
-                {
                     wink.SetActive(true);
                     DistractionStart();
-                }
                 break;
             default:
                 break;

@@ -112,6 +112,7 @@ public class SettingManager : MonoBehaviour {
         mainInputMenu.enabled = false;
         remindScreen.SetActive(true);
         submitButtonText.text = "修改";
+		PlayerPrefs.SetInt("NumberOfVisit", 1);
     }
 
     public void OpenTheInputScreen ()

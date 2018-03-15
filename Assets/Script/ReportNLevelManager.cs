@@ -44,7 +44,6 @@ public class ReportNLevelManager : MonoBehaviour {
         {
             settingManager = FindObjectOfType<SettingManager>();
             settingManager.OpenTheInputScreen();
-            PlayerPrefs.SetInt("NumberOfVisit", 1);
         }
         if (SceneManager.GetActiveScene().name == "InputTest" && PlayerPrefs.GetString("UserName")!=null)
         {
