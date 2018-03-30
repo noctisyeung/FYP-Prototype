@@ -87,7 +87,11 @@ public class HintManager : MonoBehaviour {
             afterDistractionUsedHintCounter = 0;
 			afterWrongUsedHintCounter = 0;
             if (distractionManager)
-                distractionManager.isDistractioHappened = false;
+            {
+                RnL.isDistractionHappendForCustomer.Add(distractionManager.isDistractioHappened);
+                if (distractionManager.isDistractioHappened)
+                    distractionManager.isDistractioHappened = false;
+            }
             customerSpawn.isCurrentFinished = false;
         }
 		if (customerSpawn.isCutomerSpawned) {

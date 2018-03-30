@@ -36,7 +36,7 @@ public class DistractionManager : MonoBehaviour {
             if (Hiddentimer >= 5f)
             {
                 wink.SetActive(false);
-                isDistractioHappened = false;
+                //isDistractioHappened = false;
                 customerSpawn.unhideCustomer();
                 audioManager.StartPlayBG();
 

@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 
-public class ReportNLevelManager : MonoBehaviour {
+public class ReportNLevelManager : MonoBehaviour
+{
     private string userName;
     public static int finalScoreForAllLevel = 0; //Not using right now
     public static int levelCounter = 1;
@@ -17,10 +18,11 @@ public class ReportNLevelManager : MonoBehaviour {
     private string serverAddress = "localhost:8099/test";
     public List<float> usedTimeForEachCustomer = new List<float>(); //This List will used by customercontroller class
     public List<int> usedHintsForEachCustomer = new List<int>();// This List will used by hint manager class
-    public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
-	public List<int> numOfWrongCounterForEachCustomer = new List<int>();
-	public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();
-    static List<SavePlayerData> sendDataList = new List<SavePlayerData>();
+    public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>(); //This List used by hintmanager for counting hints
+    public List<int> numOfWrongCounterForEachCustomer = new List<int>(); //This List used in customercontrollor class
+    public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();//This List used in customercontrollor class
+    public List<bool> isDistractionHappendForCustomer = new List<bool>();
+    static List<SavePlayerData> sendDataList = new List<SavePlayerData>(); //This List used to change all list to json array
     public bool uploaded = false;
     public RecipeManager recipeManager;
     public ScoreManager scoreManager;
@@ -30,8 +32,9 @@ public class ReportNLevelManager : MonoBehaviour {
     public SendJsonObj senddata;
     SettingManager settingManager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         if (PlayerPrefs.HasKey("NumberOfVisit") && SceneManager.GetActiveScene().name == "InputTest")
         {
             settingManager = FindObjectOfType<SettingManager>();
@@ -45,15 +48,16 @@ public class ReportNLevelManager : MonoBehaviour {
             settingManager = FindObjectOfType<SettingManager>();
             settingManager.OpenTheInputScreen();
         }
-        if (SceneManager.GetActiveScene().name == "InputTest" && PlayerPrefs.GetString("UserName")!=null)
+        if (SceneManager.GetActiveScene().name == "InputTest" && PlayerPrefs.GetString("UserName") != null)
         {
             userNameText.text = PlayerPrefs.GetString("UserName").ToString();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if (isNameEntered)
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isNameEntered)
         {
             if (userNameText.text == "")
             {
@@ -73,13 +77,13 @@ public class ReportNLevelManager : MonoBehaviour {
         if (isLevelEnd)
         {
             finalScoreForAllLevel += scoreManager.levelTotalScore;
-			PlayerPrefs.SetInt ("LevelCounter", levelCounter);
-			PlayerPrefs.SetInt ("Level" + levelCounter + "Score", scoreManager.levelTotalScore);
+            PlayerPrefs.SetInt("LevelCounter", levelCounter);
+            PlayerPrefs.SetInt("Level" + levelCounter + "Score", scoreManager.levelTotalScore);
             /*foreach (float value in usedTimeForEachCustomer){ //Debug use
                 Debug.Log("This is the hints lists"+value);
             }*/
             DoEachCustomerData();
-            if (SceneManager.GetActiveScene().name == "Level3" )
+            if (SceneManager.GetActiveScene().name == "Level3")
             {
                 DoSaveData();
                 if (uploaded == false)
@@ -92,12 +96,7 @@ public class ReportNLevelManager : MonoBehaviour {
             levelCounter++;
             isLevelEnd = false;
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log(PlayerPrefs.GetString("Level" + levelCounter + "Data"));
-            LoadSaveData();
-        }  
-        
+
     }
 
     public void LoadMainScreen()
@@ -116,7 +115,7 @@ public class ReportNLevelManager : MonoBehaviour {
     IEnumerator PostdataEnumerator(WWW www)
     {
         yield return www;
-        if(www.error != null)
+        if (www.error != null)
         {
             Debug.Log("finish");
         }
@@ -128,7 +127,7 @@ public class ReportNLevelManager : MonoBehaviour {
 
 
 
-    IEnumerator sendUserDataToDB (string username, int levelScore, int allLevelScore)
+    IEnumerator sendUserDataToDB(string username, int levelScore, int allLevelScore)
     {
         WWWForm form = new WWWForm();
         form.AddField("api", apikey);
@@ -147,7 +146,7 @@ public class ReportNLevelManager : MonoBehaviour {
         {
             Debug.Log(www.error);
         }
-       
+
         else
         {
             Debug.Log("Form upload complete!");
@@ -161,8 +160,9 @@ public class ReportNLevelManager : MonoBehaviour {
         levelsave.theTimeUsedToServeCustomer = usedTimeForEachCustomer;
         levelsave.numOfHintsUsedForEachCustomer = usedHintsForEachCustomer;
         levelsave.numOfHintsUsedAfterDistractionHappend = numOfHintsUsedAfterDistractionHappend;
-		levelsave.numOfWrongCounterForEachCustomer = numOfWrongCounterForEachCustomer;
-		levelsave.numOfHintsUsedAfterWrongAnswer = numOfHintsUsedAfterWrongAnswer;
+        levelsave.numOfWrongCounterForEachCustomer = numOfWrongCounterForEachCustomer;
+        levelsave.numOfHintsUsedAfterWrongAnswer = numOfHintsUsedAfterWrongAnswer;
+        levelsave.isDistractionHappendForCustomer = isDistractionHappendForCustomer;
         sendDataList.Add(levelsave);
     }
 
@@ -175,32 +175,24 @@ public class ReportNLevelManager : MonoBehaviour {
         Debug.Log(finaldataString);
     }
 
-    public void LoadSaveData()
+}
+    [System.Serializable]
+    public class SavePlayerData
     {
-        SavePlayerData levelsave = new SavePlayerData();
-        JsonUtility.FromJsonOverwrite(PlayerPrefs.GetString("Level" + levelCounter + "Data"), levelsave);
-        recipeManager.usedTimeForRemember = levelsave.theTimeUsedToRememberTheitem;
-        usedTimeForEachCustomer = levelsave.theTimeUsedToServeCustomer;
-        usedHintsForEachCustomer = levelsave.numOfHintsUsedForEachCustomer;
-        numOfHintsUsedAfterDistractionHappend = levelsave.numOfHintsUsedAfterDistractionHappend;
+        public int theTimeUsedToRememberTheitem;
+        public List<float> theTimeUsedToServeCustomer = new List<float>();
+        public List<int> numOfHintsUsedForEachCustomer = new List<int>();
+        public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
+        public List<int> numOfWrongCounterForEachCustomer = new List<int>();
+        public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();
+        public List<bool> isDistractionHappendForCustomer = new List<bool>();
     }
-}
 
-[System.Serializable]
-public class SavePlayerData
-{
-    public int theTimeUsedToRememberTheitem;
-    public List<float> theTimeUsedToServeCustomer = new List<float>();
-    public List<int> numOfHintsUsedForEachCustomer = new List<int>();
-    public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>();
-	public List<int> numOfWrongCounterForEachCustomer = new List<int>();
-	public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();
-}
+    [System.Serializable]
+    public class SendJsonObj
+    {
+        public string UserName;
+        public SavePlayerData[] Record;
+    }
 
-[System.Serializable]
-public class SendJsonObj
-{
-    public string UserName;
-    public SavePlayerData [] Record;
-}
 
