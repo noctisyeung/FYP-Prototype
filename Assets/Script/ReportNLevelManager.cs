@@ -21,7 +21,8 @@ public class ReportNLevelManager : MonoBehaviour
     public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>(); //This List used by hintmanager for counting hints
     public List<int> numOfWrongCounterForEachCustomer = new List<int>(); //This List used in customercontrollor class
     public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();//This List used in customercontrollor class
-    public List<bool> isDistractionHappendForCustomer = new List<bool>();
+    public List<bool> isDistractionHappendForCustomer = new List<bool>();//This List is used in hints class for checking which customer had distraction
+    public List<int> numOfWrongCounterAfterDistractionHappend = new List<int>();
     static List<SavePlayerData> sendDataList = new List<SavePlayerData>(); //This List used to change all list to json array
     public bool uploaded = false;
     public RecipeManager recipeManager;
@@ -163,6 +164,7 @@ public class ReportNLevelManager : MonoBehaviour
         levelsave.numOfWrongCounterForEachCustomer = numOfWrongCounterForEachCustomer;
         levelsave.numOfHintsUsedAfterWrongAnswer = numOfHintsUsedAfterWrongAnswer;
         levelsave.isDistractionHappendForCustomer = isDistractionHappendForCustomer;
+        levelsave.numOfWrongCounterAfterDistractionHappend = numOfWrongCounterAfterDistractionHappend;
         sendDataList.Add(levelsave);
     }
 
@@ -186,6 +188,7 @@ public class ReportNLevelManager : MonoBehaviour
         public List<int> numOfWrongCounterForEachCustomer = new List<int>();
         public List<int> numOfHintsUsedAfterWrongAnswer = new List<int>();
         public List<bool> isDistractionHappendForCustomer = new List<bool>();
+        public List<int> numOfWrongCounterAfterDistractionHappend = new List<int>();
     }
 
     [System.Serializable]
