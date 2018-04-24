@@ -14,16 +14,20 @@ public class CustomerController : MonoBehaviour
     public CustomerSpawn CS;
     public ScoreManager scoreManager;
     ReportNLevelManager RnL;
+    DistractionManager distractionManager;
     public int dishScore;
     public int wrongScore;
 	private AudioManager audioManager;
 	private int destroyWait = 5;
 	private int wrongCounter = 0;
+    private int wrongCounterAfterDistraction = 0;
 	public bool isCustomerWrong = false;
+
 
 	private void Start()
 	{
         RnL = FindObjectOfType<ReportNLevelManager>();
+        distractionManager = FindObjectOfType<DistractionManager>();
 		audioManager = FindObjectOfType<AudioManager>();
 		answerImage = GameObject.Find("AnswerImage").GetComponent<Image>();
 	}
@@ -36,7 +40,9 @@ public class CustomerController : MonoBehaviour
         {
             RnL.usedTimeForEachCustomer.Add(stopwatch);
 			RnL.numOfWrongCounterForEachCustomer.Add (wrongCounter);
+            RnL.numOfWrongCounterAfterDistractionHappend.Add(wrongCounterAfterDistraction);
 			wrongCounter = 0;
+            wrongCounterAfterDistraction = 0;
             thisCustomerIsEnded = false;
         }
 
@@ -73,6 +79,8 @@ public class CustomerController : MonoBehaviour
                 Debug.Log("Selected Food incorrect"+ scoreManager.levelTotalScore);
                 dishScore -= wrongScore;
 				++wrongCounter;
+                if (distractionManager.isDistractioHappened)
+                    ++wrongCounterAfterDistraction;
 				isCustomerWrong = true;
 				setWrong();
                 return;
@@ -87,6 +95,8 @@ public class CustomerController : MonoBehaviour
                         Debug.Log("Selected Food incorrect" + scoreManager.levelTotalScore);
                         dishScore -= wrongScore;
 						++wrongCounter;
+                        if (distractionManager.isDistractioHappened)
+                            ++wrongCounterAfterDistraction;
 						isCustomerWrong = true;
 						setWrong();
                         return;
@@ -107,8 +117,11 @@ public class CustomerController : MonoBehaviour
 
 	private void setCorrect()
 	{
+		var tempColor = answerImage.color;
+		tempColor.a = 1f;
+		answerImage.color = tempColor;
 		answerImage.sprite = tick;
-		answerImage.enabled = true;
+	//	answerImage.enabled = true;
 		audioManager.Play("Correct");
 		Invoke("destroySet", destroyWait);
 	}
@@ -116,13 +129,17 @@ public class CustomerController : MonoBehaviour
 	private void setWrong()
 	{
 		answerImage.sprite = cross;
-		answerImage.enabled = true;
+	//	answerImage.enabled = true;
 		audioManager.Play("Wrong");
 		Invoke("destroySet", destroyWait);
 	}
 
 	private void destroySet()
 	{
-		answerImage.enabled = false;
+		answerImage.sprite = null;
+		var tempColor = answerImage.color;
+		tempColor.a = 0f;
+		answerImage.color = tempColor;
+	//	answerImage.enabled = false;
 	}
 }

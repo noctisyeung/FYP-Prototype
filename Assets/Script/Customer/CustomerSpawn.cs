@@ -10,10 +10,10 @@ public class CustomerSpawn : MonoBehaviour
     public GameObject bubble;
     public RecipeManager recipeManager;
     public GameObject currentCustomer;
-    public GameObject fire;
+    //public GameObject fire;
+	private DistractionManager DM;
     private Text dishText;
     private AudioManager audioManager;
-
     [HideInInspector]
     public string chosenDish;
     public int totalCustomer;
@@ -30,6 +30,7 @@ public class CustomerSpawn : MonoBehaviour
         //audioManager = FindObjectOfType<AudioManager>();
         dishText = bubble.GetComponentInChildren<Text>();
         StartCoroutine(spawnCustomer());
+		DM = FindObjectOfType<DistractionManager>();
     }
 
     void Update()
@@ -54,7 +55,9 @@ public class CustomerSpawn : MonoBehaviour
         while (true)
         {
             yield return new WaitUntil(() => !currentCustomer);
-            yield return new WaitUntil(() => !fire.activeInHierarchy);
+           // yield return new WaitUntil(() => !fire.activeInHierarchy);
+			yield return new WaitUntil(() => !DM.isDistractioHappened);
+
 
             if (customerServed >= totalCustomer)
             {
