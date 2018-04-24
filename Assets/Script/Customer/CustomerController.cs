@@ -128,7 +128,10 @@ public class CustomerController : MonoBehaviour
 
 	private void setWrong()
 	{
-		answerImage.sprite = cross;
+        var tempColor = answerImage.color;
+        tempColor.a = 1f;
+        answerImage.color = tempColor;
+        answerImage.sprite = cross;
 	//	answerImage.enabled = true;
 		audioManager.Play("Wrong");
 		Invoke("destroySet", destroyWait);
