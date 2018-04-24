@@ -9,7 +9,6 @@ public class RecipeManager : MonoBehaviour {
 	// Use this for initialization
 	public TimerManager currentTime;
     public ScoreManager scoreManager;
-    public ReportNLevelManager RnL;
 
     public int numOfDish; //controling the level dish
     public string[] chosenDish;

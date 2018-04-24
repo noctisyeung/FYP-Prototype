@@ -110,6 +110,7 @@ public class CustomerController : MonoBehaviour
                 CS = FindObjectOfType<CustomerSpawn>();
 				CS.isCurrentFinished = true;
 				Debug.Log ("cc" + CS.isCurrentFinished);
+				CS.isAnswering = true;
 				CS.Invoke("destroyCustomer", destroyWait);
             }
         }
@@ -117,6 +118,7 @@ public class CustomerController : MonoBehaviour
 
 	private void setCorrect()
 	{
+		
 		var tempColor = answerImage.color;
 		tempColor.a = 1f;
 		answerImage.color = tempColor;
@@ -128,6 +130,7 @@ public class CustomerController : MonoBehaviour
 
 	private void setWrong()
 	{
+		
         var tempColor = answerImage.color;
         tempColor.a = 1f;
         answerImage.color = tempColor;

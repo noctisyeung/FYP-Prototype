@@ -54,10 +54,10 @@ public class DistractionManager : MonoBehaviour {
             Debug.Log("distraction restarted");
             RestartDistraction = false;
         }
-        if (getObject.isAnswering)
+		if (customerSpawn.isAnswering)
         {
             StopCoroutine(distractCor);
-            getObject.isAnswering = false;
+			customerSpawn.isAnswering = false;
         }
     }
     private void DistractionStart()

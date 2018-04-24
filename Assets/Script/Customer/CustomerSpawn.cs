@@ -25,6 +25,8 @@ public class CustomerSpawn : MonoBehaviour
     private Image answerImage;
     public bool killMode;
     public bool DistractionHappenedInThisStage;
+	public bool isAnswering = false;
+
 
     void Start()
     {

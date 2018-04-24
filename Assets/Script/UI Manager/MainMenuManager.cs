@@ -6,7 +6,7 @@ using UnityEngine.XR;
 
 public class MainMenuManager : MonoBehaviour {
     public string fristLevel;
-
+	public string tutor;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(SwitchToVR());
@@ -21,6 +21,11 @@ public class MainMenuManager : MonoBehaviour {
     {
         SceneManager.LoadScene(fristLevel);
     }
+		
+	public void StartTutor ()
+	{
+		SceneManager.LoadScene(tutor);
+	}
 
     IEnumerator SwitchToVR()
     {
