@@ -29,6 +29,7 @@ public class ReportNLevelManager : MonoBehaviour
     public ScoreManager scoreManager;
     public InputField userNameText;
     public string finaldataString;
+    public string nextLevelName;
 
     public SendJsonObj senddata;
     SettingManager settingManager;
@@ -177,6 +178,10 @@ public class ReportNLevelManager : MonoBehaviour
         Debug.Log(finaldataString);
     }
 
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(nextLevelName);
+    }
 }
     [System.Serializable]
     public class SavePlayerData

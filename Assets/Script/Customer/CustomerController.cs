@@ -139,7 +139,7 @@ public class CustomerController : MonoBehaviour
 
 	private void destroySet()
 	{
-		answerImage.sprite = null;
+		//answerImage.sprite = null;
 		var tempColor = answerImage.color;
 		tempColor.a = 0f;
 		answerImage.color = tempColor;

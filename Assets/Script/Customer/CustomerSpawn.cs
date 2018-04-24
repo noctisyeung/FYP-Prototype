@@ -22,8 +22,9 @@ public class CustomerSpawn : MonoBehaviour
     public int customerServed = 0;
     public bool isCurrentFinished = false; //Used for hintmanager to control the update variable
 	public bool isCutomerSpawned = false;
-
+    private Image answerImage;
     public bool killMode;
+    public bool DistractionHappenedInThisStage;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class CustomerSpawn : MonoBehaviour
         dishText = bubble.GetComponentInChildren<Text>();
         StartCoroutine(spawnCustomer());
 		DM = FindObjectOfType<DistractionManager>();
+        
     }
 
     void Update()
@@ -65,15 +67,15 @@ public class CustomerSpawn : MonoBehaviour
             }
 
             yield return new WaitForSeconds(Random.Range(minSpawnWait, maxSpawnWait));
-
-			isCutomerSpawned = true;
+            
+            isCutomerSpawned = true;
             randRecipe = recipe[Random.Range(0, recipe.Count)];
             Recipe SelectRecipe = Resources.Load<Recipe>("recipes/" + randRecipe);
             dishText.text = "老闆整個 " + SelectRecipe.ChineseName;                //Chi
             //dishText.text = "I want a "+SelectRecipe.ChineseName;                //Eng
             chosenDish = SelectRecipe.name;
             bubble.SetActive(true);
-
+            
             if (totalCustomer - customerServed <= recipe.Count)
                 recipe.Remove(randRecipe);
 
@@ -82,6 +84,12 @@ public class CustomerSpawn : MonoBehaviour
             currentCustomer = Instantiate(randCustomer, transform.position, transform.rotation);
             currentCustomer.transform.parent = gameObject.transform;
             customers.Remove(randCustomer);
+            answerImage = GameObject.Find("AnswerImage").GetComponent<Image>();
+            answerImage.sprite = null;
+            if (customerServed >= 1 && DistractionHappenedInThisStage == false)
+            {
+                DM.RestartDistraction = true;
+            }
         }
     }
 
@@ -106,6 +114,7 @@ public class CustomerSpawn : MonoBehaviour
     {
         if (currentCustomer)
         {
+            DistractionHappenedInThisStage = true;
             currentCustomer.SetActive(true);
             bubble.SetActive(true);
         }

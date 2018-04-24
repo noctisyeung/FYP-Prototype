@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour {
 			leftBlocker.SetActive(true);
 			rightBlocker.SetActive(true);
             showStar(showStarCalculator(levelTotalScore));
-            scoreText.text = levelTotalScore.ToString();
+            //scoreText.text = levelTotalScore.ToString();
             setTitle();
             recipeManager.isStart = false;
             RnL.isLevelEnd = true;
@@ -77,12 +77,12 @@ public class ScoreManager : MonoBehaviour {
     {
         string username = PlayerPrefs.GetString("UserName").ToString();
 		int currentLevel = PlayerPrefs.GetInt ("LevelCounter");
-		int userScoreSave = PlayerPrefs.GetInt ("Level" + currentLevel + "Score");
-		if (userScoreSave == 0)
-        	scoreTitle.text = username + "恭喜曬你完成任務!";
-		else if (userScoreSave <= levelTotalScore)
-			scoreTitle.text = username + "今次沒有太大進步，下次再努力！";
-		else if (userScoreSave > levelTotalScore)
-			scoreTitle.text = username + "今次有進步，再接再厲！";
+            int userScoreSave = PlayerPrefs.GetInt("Level" + currentLevel + "Score");
+            if (userScoreSave == 0)
+                scoreTitle.text = username + "恭喜曬你完成任務!";
+            else if (userScoreSave <= levelTotalScore)
+                scoreTitle.text = username + "今次沒有太大進步，下次再努力！";
+            else if (userScoreSave > levelTotalScore)
+                scoreTitle.text = username + "今次有進步，再接再厲！";
+        }
     }
-}

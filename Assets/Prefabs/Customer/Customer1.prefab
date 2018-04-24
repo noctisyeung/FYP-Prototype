@@ -1116,11 +1116,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tick: {fileID: 21300000, guid: d22f2ba8b04e333498efff4f1b404391, type: 3}
   cross: {fileID: 21300000, guid: df0be41aae7dae440bf46484a9eefe80, type: 3}
+  stopwatch: 0
   CS: {fileID: 114347388877362552, guid: b9c9ed6f14dfa6d49abee3cc51387755, type: 2}
   scoreManager: {fileID: 114050400614534564, guid: 1be730b6cc6c1f24d9f2562f4a9368d2,
     type: 2}
   dishScore: 100
-  wrongScore: 20
+  wrongScore: 30
+  isCustomerWrong: 0
 --- !u!137 &137267816131727906
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

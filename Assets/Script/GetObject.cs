@@ -15,6 +15,7 @@ public class GetObject : MonoBehaviour{
 	private AudioManager audioManager;
     public GameObject Water;
     public GameObject wink;
+    public bool isAnswering = false;
 
     // Use this for initialization
     void Start () {
@@ -89,6 +90,7 @@ public class GetObject : MonoBehaviour{
                     inventory.RemoveItem();
                     break;
                 case "submit":
+                isAnswering = true;
                     CC = FindObjectOfType<CustomerController>();
                     CC.CheckFood();
                     inventory.RemoveAllItem();
