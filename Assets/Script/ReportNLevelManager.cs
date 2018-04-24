@@ -15,7 +15,7 @@ public class ReportNLevelManager : MonoBehaviour
     private string defaultName = "Super Hero";
     private string apikey = "0d8144c5-4df7-4953-b813-f1104fe86dd1";
     private bool isNameEntered = false;
-    private string serverAddress = "localhost:8099/test";
+    private string serverAddress = "http://report-system.herokuapp.com/upload";
     public List<float> usedTimeForEachCustomer = new List<float>(); //This List will used by customercontroller class
     public List<int> usedHintsForEachCustomer = new List<int>();// This List will used by hint manager class
     public List<int> numOfHintsUsedAfterDistractionHappend = new List<int>(); //This List used by hintmanager for counting hints
