@@ -27,6 +27,11 @@ public class MainMenuManager : MonoBehaviour {
 		SceneManager.LoadScene(tutor);
 	}
 
+	public void Quitgame ()
+	{
+		Application.Quit();
+	}
+
     IEnumerator SwitchToVR()
     {
         // Device names are lowercase, as returned by `XRSettings.supportedDevices`.

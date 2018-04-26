@@ -253,6 +253,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114013547560530490, guid: 5e3c42de5b9a97e4ea33220c7c4797f7,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224998383441437186, guid: 5e3c42de5b9a97e4ea33220c7c4797f7,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -487,6 +492,31 @@ Prefab:
         type: 2}
       propertyPath: tutor
       value: tutor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114013547560530490, guid: 5e3c42de5b9a97e4ea33220c7c4797f7,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114013547560530490, guid: 5e3c42de5b9a97e4ea33220c7c4797f7,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114013547560530490, guid: 5e3c42de5b9a97e4ea33220c7c4797f7,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 153221345}
+    - target: {fileID: 114013547560530490, guid: 5e3c42de5b9a97e4ea33220c7c4797f7,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quitgame
+      objectReference: {fileID: 0}
+    - target: {fileID: 114013547560530490, guid: 5e3c42de5b9a97e4ea33220c7c4797f7,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e3c42de5b9a97e4ea33220c7c4797f7, type: 2}
@@ -869,6 +899,10 @@ Prefab:
     - target: {fileID: 11413652, guid: 6dfff844c95f342d1a8a9ab165303662, type: 2}
       propertyPath: m_FontData.m_MaxSize
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 172646, guid: 6dfff844c95f342d1a8a9ab165303662, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429704, guid: 6dfff844c95f342d1a8a9ab165303662, type: 2}

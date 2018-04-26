@@ -103,8 +103,8 @@ public class RecipeManager : MonoBehaviour {
 			BlockerRight.SetActive(false);
             isStart = true;
             usedTimeForRemember = (Mathf.FloorToInt(tempStartTime) - Mathf.FloorToInt(currentTime.startTime));
-            //TimeScore = TimeScore - usedTimeForRemember;
-            //scoreManager.levelTotalScore += TimeScore;
+            TimeScore = TimeScore - usedTimeForRemember;
+            scoreManager.levelTotalScore += TimeScore;
 	}
     public void NextRecipe ()
     {

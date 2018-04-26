@@ -7110,7 +7110,7 @@ Prefab:
     - target: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539,
         type: 2}
       propertyPath: recipe.Array.size
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224487148079716416, guid: 69b905aef3b04674e9e5511d83571539,
         type: 2}
@@ -7364,7 +7364,7 @@ Prefab:
     - target: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539,
         type: 2}
       propertyPath: numOfDish
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539,
         type: 2}
@@ -7381,6 +7381,51 @@ Prefab:
       propertyPath: score
       value: 
       objectReference: {fileID: 891630664}
+    - target: {fileID: 114805826312861424, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114805826312861424, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114805826312861424, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.007843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664477503231746, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664477503231746, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.007843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664477503231746, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: recipe.Array.data[8]
+      value: recipe9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: recipe.Array.data[9]
+      value: recipe10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114746507321468934, guid: 69b905aef3b04674e9e5511d83571539,
+        type: 2}
+      propertyPath: recipe.Array.data[10]
+      value: recipe11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69b905aef3b04674e9e5511d83571539, type: 2}
   m_IsPrefabParent: 0
@@ -8527,7 +8572,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 172646, guid: 6dfff844c95f342d1a8a9ab165303662, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6dfff844c95f342d1a8a9ab165303662, type: 2}
@@ -16984,7 +17029,7 @@ Prefab:
     - target: {fileID: 114347388877362552, guid: b9c9ed6f14dfa6d49abee3cc51387755,
         type: 2}
       propertyPath: totalCustomer
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114347388877362552, guid: b9c9ed6f14dfa6d49abee3cc51387755,
         type: 2}
@@ -24960,7 +25005,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5FEB\u9EDE\u4F7F\u7528\u6EC5\u706B\u7B52"
+  m_Text: "       \u6EC5  \u706B  \u7B52  "
 --- !u!222 &2061154884
 CanvasRenderer:
   m_ObjectHideFlags: 0

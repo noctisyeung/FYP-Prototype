@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9be9a7a3b9923041a68e7084dbd0a33, type: 3}
+  m_Name: recipe10
+  m_EditorClassIdentifier: 
+  RecipeName: recipe10
+  foods:
+  - {fileID: 11400000, guid: 903aadcbc4e52dc4ab02d822f9784266, type: 2}
+  - {fileID: 11400000, guid: f736c5eab38ca404f8c9f3ed7e509a2f, type: 2}
+  - {fileID: 11400000, guid: ea0faa03113725e43895d6eab4d2550a, type: 2}
+  ChineseName: "\u9BAE\u5473\u84B8\u8089\u9905"
